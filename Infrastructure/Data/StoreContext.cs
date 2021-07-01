@@ -11,7 +11,9 @@ namespace Infrastructure.Data
         }
 
         public DbSet<Product> Products { get; set; }
-        
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<ProductCurrent> ProductCurrents { get; set; }
         
     }
 }

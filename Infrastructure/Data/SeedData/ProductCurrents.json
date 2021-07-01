@@ -1,0 +1,34 @@
+[
+  {
+    "Id": 1,
+    "Name": "Renaissance"
+  },
+  {
+    "Id": 2,
+    "Name": "Impressionism"
+  },
+  {
+    "Id": 3,
+    "Name": "Symbolism"
+  },
+  {
+    "Id": 4,
+    "Name": "Cubism"
+  },
+  {
+    "Id": 5,
+    "Name": "Expressionism"
+  },
+  {
+    "Id": 6,
+    "Name": "Surrealism"
+  },
+  {
+    "Id": 7,
+    "Name": "Pop Art"
+  },
+  {
+    "Id": 8,
+    "Name": "Contemporary Art"
+  }
+]

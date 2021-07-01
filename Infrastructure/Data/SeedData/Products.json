@@ -1,0 +1,137 @@
+[
+  {
+    "Name": "The Tower of Babel",
+    "Description": "Fingerstache culpa lomo sustainable. Woke copper mug dolore eiusmod, ad cornhole af four loko. Dreamcatcher tofu actually cillum mustache whatever venmo hella bicycle rights vape reprehenderit pour-over organic kombucha. Whatever lyft duis, XOXO asymmetrical typewriter et 3 wolf moon. Kickstarter ipsum pariatur cray palo santo seitan dolor.",
+    "Price": 529.99,
+    "PictureUrl": "images/products/BruegelBabel.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 3,
+    "ProductCurrentId": 1
+  },
+  {
+    "Name": "Pieta",
+    "Description": "Skateboard keytar farm-to-table DIY sartorial adaptogen kinfolk venmo hammock unicorn gastropub. Brunch et bitters, bushwick meh VHS swag vinyl hoodie esse taiyaki hell of +1 excepteur. Whatever ipsum anim gastropub quinoa cillum microdosing tote bag raclette dolor adaptogen roof party.",
+    "Price": 555.29,
+    "PictureUrl": "images/products/MichelangeloPieta.jpg",
+    "ProductTypeId": 2,
+    "AuthorId": 1,
+    "ProductCurrentId": 1
+  },
+  {
+    "Name": "Summer",
+    "Description": "Waistcoat dolore quis cronut, edison bulb blog hammock. In pariatur occupy ex, four dollar toast next level kale chips iPhone. La croix viral deep v chartreuse gentrify bushwick biodiesel irony semiotics voluptate four loko ex dolore XOXO dreamcatcher.",
+    "Price": 580.59,
+    "PictureUrl": "images/products/ArcimboldoSummer.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 2,
+    "ProductCurrentId": 1
+  },
+  {
+    "Name": "Luncheon of the Boating Party",
+    "Description": "Elit try-hard swag, quis aliqua est 90's adipisicing in blog in la croix minim tousled sustainable. Aute franzen you probably haven't heard of them semiotics commodo. Velit 8-bit narwhal fanny pack, pinterest ea schlitz skateboard tofu vegan. Flannel normcore sint pok pok mumblecore esse brunch.",
+    "Price": 605.89,
+    "PictureUrl": "images/products/RenoirLuncheon.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 4,
+    "ProductCurrentId": 2
+  },
+  {
+    "Name": "The Dance",
+    "Description": "Air plant tousled vaporware, gochujang leggings single-origin coffee synth est. Retro vexillologist intelligentsia vice. Tofu gochujang four dollar toast, kogi thundercats kitsch microdosing farm-to-table velit messenger bag woke hexagon sunt.",
+    "Price": 631.19,
+    "PictureUrl": "images/products/CarpeauxDanse.jpg",
+    "ProductTypeId": 2,
+    "AuthorId": 5,
+    "ProductCurrentId": 2
+  },
+  {
+    "Name": "Andromede",
+    "Description": "Meh snackwave sed listicle. Proident austin palo santo, prism man bun typewriter kitsch kombucha lomo swag. Leggings selvage air plant you probably haven't heard of them hexagon edison bulb in dreamcatcher direct trade mustache prism ad sartorial aliquip.",
+    "Price": 656.49,
+    "PictureUrl": "images/products/AndromedeRodin.jpg",
+    "ProductTypeId": 2,
+    "AuthorId": 6,
+    "ProductCurrentId": 3
+  },
+  {
+    "Name": "The Three ages of Woman",
+    "Description": "Woke adaptogen try-hard stumptown sustainable, la croix lumbersexual hella ut fam poke anim in. Keffiyeh shabby chic selfies shaman excepteur enim lo-fi forage church-key 8-bit. Hoodie small batch neutra la croix enamel pin lyft post-ironic laborum next level reprehenderit est dolore.",
+    "Price": 681.79,
+    "PictureUrl": "images/products/KlimtAges.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 7,
+    "ProductCurrentId": 3
+  },
+  {
+    "Name": "The ladies of Avignon",
+    "Description": "Pug wayfarers listicle, sustainable kickstarter deserunt tofu scenester beard quinoa. Meh listicle chicharrones godard photo booth raclette adipisicing iPhone trust fund banh mi XOXO hexagon cardigan sint.",
+    "Price": 707.09,
+    "PictureUrl": "images/products/PicassoDemoiselles.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 8,
+    "ProductCurrentId": 4
+  },
+  {
+    "Name": "Unique Forms of Continuity in Space",
+    "Description": "Edison bulb cred ut et DIY knausgaard. Twee banjo enamel pin crucifix. Meggings tacos gentrify cillum aliqua pickled irure organic. Polaroid activated charcoal veniam, post-ironic direct trade pop-up letterpress culpa truffaut fugiat kale chips vice tofu literally wolf.",
+    "Price": 732.39,
+    "PictureUrl": "images/products/UniqueFormsBoccioni.jpg",
+    "ProductTypeId": 2,
+    "AuthorId": 9,
+    "ProductCurrentId": 4
+  },
+  {
+    "Name": "The Scream",
+    "Description": "Deserunt shaman tbh distillery aute fam consectetur VHS. Tempor officia vaporware live-edge blue bottle. Portland photo booth cornhole swag. Craft beer selvage narwhal veniam aute, pinterest nulla ennui yr photo booth.",
+    "Price": 757.69,
+    "PictureUrl": "images/products/MunchScream.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 10,
+    "ProductCurrentId": 5
+  },
+  {
+    "Name": "Time Transfixed",
+    "Description": "Vexillologist raclette vape sustainable. Humblebrag mlkshk enim chillwave, aesthetic marfa forage thundercats PBR&B migas cloud bread messenger bag microdosing brunch farm-to-table.",
+    "Price": 782.99,
+    "PictureUrl": "images/products/MagritteTime.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 11,
+    "ProductCurrentId": 6
+  },
+  {
+    "Name": "Drowning Girl",
+    "Description": "Tilde aute meditation, green juice mumblecore coloring book art party butcher lorem food truck whatever voluptate pork belly. Williamsburg tumblr ad try-hard meh. Hoodie reprehenderit vegan, four dollar toast hell of skateboard keytar knausgaard cold-pressed.",
+    "Price": 808.29,
+    "PictureUrl": "images/products/LichtensteinDrowningGirl.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 12,
+    "ProductCurrentId": 7
+  },
+  {
+    "Name": "Love",
+    "Description": "Tousled hell of enamel pin actually iceland id. Glossier ad leggings man braid man bun cupidatat adaptogen franzen. Kombucha XOXO ut salvia quis sint actually commodo small batch culpa fanny pack. Laboris labore disrupt health goth humblebrag cloud bread gentrify kickstarter activated charcoal schlitz distillery leggings.",
+    "Price": 833.59,
+    "PictureUrl": "images/products/IndianaLove.jpg",
+    "ProductTypeId": 2,
+    "AuthorId": 13,
+    "ProductCurrentId": 7
+  },
+  {
+    "Name": "Dona I Ocell",
+    "Description": "Distillery reprehenderit blue bottle la croix taxidermy ipsum poke pug deserunt sint mlkshk hoodie knausgaard voluptate. Elit fam aliquip flannel echo park aesthetic pork belly unicorn art party DIY swag cornhole schlitz tumeric sint. Ad hoodie nulla commodo asymmetrical.",
+    "Price": 858.89,
+    "PictureUrl": "images/products/MiroDona.jpg",
+    "ProductTypeId": 2,
+    "AuthorId": 14,
+    "ProductCurrentId": 8
+  },
+  {
+    "Name": "Squll",
+    "Description": "Vinyl shabby chic schlitz cupidatat, occaecat post-ironic kinfolk microdosing affogato. Quinoa heirloom YOLO, unicorn ethical scenester incididunt authentic man braid biodiesel austin velit before they sold out kombucha magna.",
+    "Price": 884.19,
+    "PictureUrl": "images/products/BasquiatSqull.jpg",
+    "ProductTypeId": 1,
+    "AuthorId": 15,
+    "ProductCurrentId": 8
+  }
+]

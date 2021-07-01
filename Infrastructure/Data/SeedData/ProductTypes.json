@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "Name": "Painting"
+  },
+  {
+    "Id": 2,
+    "Name": "Sculpture"
+  },
+  {
+    "Id": 3,
+    "Name": "Film"
+  },
+  {
+    "Id": 4,
+    "Name": "Photography"
+  }
+]

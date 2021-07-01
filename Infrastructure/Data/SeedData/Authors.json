@@ -1,0 +1,107 @@
+[
+  {
+    "Id": 1,
+    "Name": "Michelangelo",
+    "DateOfBirth": 1475,
+    "DateOfDeath": 1564,
+    "Nationality": "Italian"
+  },
+  {
+    "Id": 2,
+    "Name": "Arcimboldo",
+    "DateOfBirth": 1527,
+    "DateOfDeath": 1593,
+    "Nationality": "Italian"
+  },
+  {
+    "Id": 3,
+    "Name": "Pieter Breugel",
+    "DateOfBirth": 1525,
+    "DateOfDeath": 1569,
+    "Nationality": "Dutch"
+  },
+  {
+    "Id": 4,
+    "Name": "Auguste Renoir",
+    "DateOfBirth": 1841,
+    "DateOfDeath": 1919,
+    "Nationality": "French"
+  },
+  {
+    "Id": 5,
+    "Name": "Jean Carpeaux",
+    "DateOfBirth": 1827,
+    "DateOfDeath": 1875,
+    "Nationality": "French"
+  },
+  {
+    "Id": 6,
+    "Name": "Auguste Rodin",
+    "DateOfBirth": 1840,
+    "DateOfDeath": 1917,
+    "Nationality": "French"
+  },
+  {
+    "Id": 7,
+    "Name": "Gustav Klimt",
+    "DateOfBirth": 1872,
+    "DateOfDeath": 1918,
+    "Nationality": "Austrian"
+  },
+  {
+    "Id": 8,
+    "Name": "Pablo Picasso",
+    "DateOfBirth": 1881,
+    "DateOfDeath": 1973,
+    "Nationality": "Spanish"
+  },
+  {
+    "Id": 9,
+    "Name": "Umberto Boccioni",
+    "DateOfBirth": 1882,
+    "DateOfDeath": 1916,
+    "Nationality": "Italian"
+  },
+  {
+    "Id": 10,
+    "Name": "Edvard Munch",
+    "DateOfBirth": 1863,
+    "DateOfDeath": 1944,
+    "Nationality": "Norwegian"
+  },
+  {
+    "Id": 11,
+    "Name": "Rene Magritte",
+    "DateOfBirth": 1898,
+    "DateOfDeath": 1967,
+    "Nationality": "Belgian"
+  },
+  {
+    "Id": 12,
+    "Name": "Roy Lichtenstein",
+    "DateOfBirth": 1923,
+    "DateOfDeath": 1997,
+    "Nationality": "American"
+  },
+  {
+    "Id": 13,
+    "Name": "Robert Indiana",
+    "DateOfBirth": 1928,
+    "DateOfDeath": 1918,
+    "Nationality": "American"
+  },
+  {
+    "Id": 14,
+    "Name": "Juan Miro",
+    "DateOfBirth": 1893,
+    "DateOfDeath": 1983,
+    "Nationality": "Spanish"
+  },
+  {
+    "Id": 15,
+    "Name": "Jean Michel Basquiat",
+    "DateOfBirth": 1960,
+    "DateOfDeath": 1988,
+    "Nationality": "American"
+  }
+]

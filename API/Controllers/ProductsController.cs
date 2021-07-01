@@ -2,7 +2,7 @@
 namespace API.Controllers
 {
     using System.Threading.Tasks;
-    using Infrastructure.Data;
+    using Core.Interfaces;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -10,20 +10,49 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly StoreContext _context;
-        public ProductsController(StoreContext context)
+        private readonly IProductRepository _productRepository;
+        public ProductsController(IProductRepository productRepository)
         {
-            _context = context;
+            _productRepository = productRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetProducts() =>
-            Ok(await _context.Products.ToListAsync());
+            Ok(await _productRepository.GetProductsAsync());
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id) =>
-            Ok(await _context.Products.FindAsync(id)); 
+            Ok(await _productRepository.GetProductByIdAsync(id));
 
+
+        [HttpGet("types")]
+        public async Task<IActionResult> GetProductTypes() =>
+            Ok(await _productRepository.GetProductTypesAsync());
+
+
+        [HttpGet("types/{id}")]
+        public async Task<IActionResult> GetProductType(int id) =>
+            Ok(await _productRepository.GetProductTypeByIdAsync(id));
+
+        
+        [HttpGet("currents")]
+        public async Task<IActionResult> GetProductCurrents() =>
+            Ok(await _productRepository.GetProductCurrentsAsync());
+
+
+        [HttpGet("currents/{id}")]
+        public async Task<IActionResult> GetProductCurrent(int id) =>
+            Ok(await _productRepository.GetProductCurrentByIdAsync(id));
+
+
+        [HttpGet("authors")]
+        public async Task<IActionResult> GetAuthors() =>
+            Ok(await _productRepository.GetAuthorsAsync());
+
+
+        [HttpGet("authors/{id}")]
+        public async Task<IActionResult> GetAuthor(int id) =>
+            Ok(await _productRepository.GetAuthorByIdAsync(id));
     }
 }
