@@ -9,7 +9,6 @@ namespace API.Controllers
     using Core.Interfaces;
     using Core.Specifications;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
 
     [Route("api/[controller]")]
     [ApiController]
