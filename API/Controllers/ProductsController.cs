@@ -1,7 +1,10 @@
 
 namespace API.Controllers
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using API.DTOs;
+    using AutoMapper;
     using Core.Entities;
     using Core.Interfaces;
     using Core.Specifications;
@@ -16,9 +19,11 @@ namespace API.Controllers
         private readonly IGenericRepository<ProductType> _typeRepository;
         private readonly IGenericRepository<Author> _authorRepository;
         private readonly IGenericRepository<ProductCurrent> _currentRepository;
+        private readonly IMapper _mapper;
         public ProductsController(IGenericRepository<Product> productRepository, IGenericRepository<ProductType> typeRepository,
-        IGenericRepository<ProductCurrent> currentRepository, IGenericRepository<Author> authorRepository)
+        IGenericRepository<ProductCurrent> currentRepository, IGenericRepository<Author> authorRepository, IMapper mapper)
         {
+            _mapper = mapper;
             _currentRepository = currentRepository;
             _authorRepository = authorRepository;
             _typeRepository = typeRepository;
@@ -26,18 +31,22 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts() 
+        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts()
         {
             var spec = new ProductsWithTypesAndCurrentsAndAuthorsSpecification();
-            return Ok(await _productRepository.GetAllWithSpecification(spec));
+            var products = await _productRepository.GetAllWithSpecification(spec);
+            var productsToReturn = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+            return Ok(productsToReturn);
         }
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProduct(int id)
+        public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndCurrentsAndAuthorsSpecification(id);
-            return Ok(await _productRepository.GetEntityWithSpecification(spec));
+            var product = await _productRepository.GetEntityWithSpecification(spec);
+            var productToReturn = _mapper.Map<Product, ProductToReturnDto>(product);
+            return Ok(productToReturn);
         }
 
 
@@ -69,5 +78,6 @@ namespace API.Controllers
         [HttpGet("authors/{id}")]
         public async Task<IActionResult> GetAuthor(int id) =>
             Ok(await _authorRepository.GetById(id));
+
     }
 }
