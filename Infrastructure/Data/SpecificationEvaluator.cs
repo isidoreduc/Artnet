@@ -10,10 +10,13 @@ namespace Infrastructure.Data
         public static IQueryable<T> GetQuery(IQueryable<T> inputQuery, ISpecification<T> specification)
         {
             var query = inputQuery;
-            if (specification.Criteria != null)
-            {
-                query = query.Where(specification.Criteria);
-            }
+
+            query = specification.Criteria != null ? query.Where(specification.Criteria) : query;
+
+            query = specification.OrderBy != null ? query.OrderBy(specification.OrderBy) : query;
+
+            query = specification.OrderByDescending != null ? query.OrderByDescending(specification.OrderByDescending) : query;
+
             query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
             return query;
         }

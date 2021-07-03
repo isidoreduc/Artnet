@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
@@ -14,14 +15,28 @@ namespace Core.Specifications
             Criteria = criteria;
         }
 
-        public Expression<System.Func<T, bool>> Criteria {get; }
+        public Expression<System.Func<T, bool>> Criteria { get; }
 
-        public List<Expression<System.Func<T, object>>> Includes {get; } =
+        public List<Expression<System.Func<T, object>>> Includes { get; } =
             new List<Expression<System.Func<T, object>>>();
 
-        protected void AddInclude(Expression<System.Func<T, object>> includeExpression)
+        public Expression<Func<T, object>> OrderBy { get; private set; }
+
+        public Expression<Func<T, object>> OrderByDescending { get; private set; }
+
+        protected void AddInclude(Expression<Func<T, object>> includeExpression)
         {
             Includes.Add(includeExpression);
+        }
+
+        protected void AddOrderBy(Expression<Func<T, object>> orderByExpression)
+        {
+            OrderBy = orderByExpression;
+        }
+
+        protected void AddOrderByDesc(Expression<Func<T, object>> orderByDescExpression)
+        {
+            OrderByDescending = orderByDescExpression;
         }
     }
 }
