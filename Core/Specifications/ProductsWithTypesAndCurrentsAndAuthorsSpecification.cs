@@ -7,16 +7,21 @@ namespace Core.Specifications
     public class ProductsWithTypesAndCurrentsAndAuthorsSpecification : BaseSpecification<Product>
     {
         // specification to get all products
-        public ProductsWithTypesAndCurrentsAndAuthorsSpecification(string sortByprice)
+        public ProductsWithTypesAndCurrentsAndAuthorsSpecification(ProductSpecParams productSpecParams) 
+            : base(p => // filtering based on type, current, author
+                (!productSpecParams.TypeId.HasValue || p.ProductTypeId == productSpecParams.TypeId) && 
+                (!productSpecParams.CurrentId.HasValue || p.ProductCurrentId == productSpecParams.CurrentId) &&
+                (!productSpecParams.AuthorId.HasValue || p.AuthorId == productSpecParams.AuthorId))
         {
             AddInclude(p => p.ProductType);
             AddInclude(p => p.ProductCurrent);
             AddInclude(p => p.Author);
             AddOrderBy(p => p.Name);
+            AddPagination(productSpecParams.PageSize, productSpecParams.PageSize * (productSpecParams.PageIndex - 1));
             
-            if (!string.IsNullOrEmpty(sortByprice))
+            if (!string.IsNullOrEmpty(productSpecParams.Sort))
             {
-                switch (sortByprice)
+                switch (productSpecParams.Sort)
                 {
                     case "priceAsc":
                         AddOrderBy(p => p.Price);
