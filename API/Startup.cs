@@ -29,6 +29,7 @@ namespace API
                 options.UseSqlite(_configuration["ConnectionStrings:SqliteConnection"]));
 
             services.AddAutoMapper(typeof(MappingProfiles));
+            services.AddCors(opt => opt.AddPolicy("AngularPolicy", policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")));
             services.AddOurServices(); // extension method 
         }
 
@@ -46,6 +47,8 @@ namespace API
             app.UseRouting();
 
             app.UseStaticFiles();
+
+            app.UseCors("AngularPolicy");
 
             app.UseAuthorization();
 
