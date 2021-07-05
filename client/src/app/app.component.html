@@ -1,1 +1,7 @@
+<app-nav-bar></app-nav-bar>
 <div>Welcome to {{title}}</div> 
+<div >
+    <ul >
+        <li class="list-unstyled" *ngFor="let item of products">{{item.name}}</li>
+    </ul>
+</div>
