@@ -1,5 +1,7 @@
+@import '../../styles.scss';
+
 .active {
-    background-color: dimgrey;
+    background-color: $good-night-gray;
 }
 
 .list-group-item {
