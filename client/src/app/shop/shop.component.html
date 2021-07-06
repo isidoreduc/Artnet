@@ -47,9 +47,9 @@
                     <span>Showing <b>10</b> of <b>16</b> products</span>
                 </header>
                 <div class="form-inline">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <button type="button" class="btn btn-outline-primary mx-2">Search</button>
-                    <button type="button" class="btn btn-outline-primary">Reset</button>
+                    <input #search type="text" class="form-control" placeholder="Search...">
+                    <button type="button" class="btn btn-outline-primary mx-2" (click)="onSearch()">Search</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="onSearchReset()">Reset</button>
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IPagination, IProduct } from '../shared/model/product';
 import { IAuthor, ICurrent, IType } from '../shared/model/product-details';
 import { ShopService } from './shop.service';
@@ -9,7 +9,7 @@ import { ShopService } from './shop.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-
+  @ViewChild('search', {static: true}) searchTerm: ElementRef;
   products: IProduct[];
   types: IType[];
   currents: ICurrent[];
@@ -23,6 +23,7 @@ export class ShopComponent implements OnInit {
     { name: 'Price asc.', value: 'priceAsc' },
     { name: 'Price desc', value: 'priceDesc' }
   ]
+  search: string;
 
 
   constructor(public shopService: ShopService) { }
@@ -35,7 +36,7 @@ export class ShopComponent implements OnInit {
     this.getProductAuthors();
   }
 
-  getProducts = () => this.shopService.getProducts(this.typeSelected, this.currentSelected, this.authorSelected, this.sortSelected)
+  getProducts = () => this.shopService.getProducts(this.typeSelected, this.currentSelected, this.authorSelected, this.sortSelected, this.search)
     .subscribe((response: IPagination) => this.products = response.data, error => console.log(error));
 
   // getProductById = (id: number) => this.shopService.getProductById(id)
@@ -67,6 +68,17 @@ export class ShopComponent implements OnInit {
 
   onSortSelected = (sort: string) => {
     this.sortSelected = sort;
+    this.getProducts();
+  }
+
+  onSearch = () => {
+    this.search = this.searchTerm.nativeElement.value;
+    this.getProducts();
+  }
+
+  onSearchReset = () => {
+    this.searchTerm.nativeElement.value = '';
+    this.search ='';
     this.getProducts();
   }
 }

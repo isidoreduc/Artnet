@@ -12,13 +12,14 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts = (typeId?: number, currentId?: number, authorId?: number, sort?: string) => {
+  getProducts = (typeId?: number, currentId?: number, authorId?: number, sort?: string, search?: string) => {
     let params = new HttpParams();
     params = typeId ? params.append('typeId', typeId.toString()) : params;
     params = currentId ? params.append('currentId', currentId.toString()) : params;
     params = authorId ? params.append('authorId', authorId.toString()) : params;
     params = sort ? params.append('sort', sort) : params;
-    return this.http.get<IPagination>(this.baseurl + "products", { params: params})
+    params = search ? params.append('search', search) : params;
+    return this.http.get<IPagination>(this.baseurl + "products", { params: params })
   };
 
   // getProductById = (id: number) => this.http.get<IProduct>(this.baseurl + `products/${id}`);
