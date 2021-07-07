@@ -55,16 +55,19 @@ export class ShopComponent implements OnInit {
 
   onTypeSelected = (typeId: number) => {
     this.shopParams.typeId = typeId;
+    this.shopParams.pageIndex = 1; //reset index
     this.getProducts();
   }
 
   onCurrentSelected = (currentId: number) => {
     this.shopParams.currentId = currentId;
+    this.shopParams.pageIndex = 1;
     this.getProducts();
   }
 
   // onAuthorSelected = (authorId: number) => {
   //   this.authorSelected = authorId;
+  // this.shopParams.pageIndex = 1;
   //   this.getProducts();
   // }
 
@@ -75,6 +78,7 @@ export class ShopComponent implements OnInit {
 
   onSearch = () => {
     this.shopParams.search = this.searchTerm.nativeElement.value;
+    this.shopParams.pageIndex = 1;
     this.getProducts();
   }
 
@@ -84,8 +88,8 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
-  onPageChanged = (event: any) => { 
-    this.shopParams.pageIndex = event; 
-    this.getProducts(); 
+  onPageChanged = (event: any) => {
+    this.shopParams.pageIndex = event;
+    this.getProducts();
   }
 }
