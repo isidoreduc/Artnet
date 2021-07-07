@@ -39,7 +39,6 @@ export class ShopComponent implements OnInit {
       this.shopParams.pageIndex = response.pageIndex;
       this.shopParams.pageSize = response.pageSize;
       this.totalCount = response.count;
-      console.log(response);
     }, error => console.log(error));
 
   // getProductById = (id: number) => this.shopService.getProductById(id)
@@ -86,7 +85,7 @@ export class ShopComponent implements OnInit {
   }
 
   onPageChanged = (event: any) => { 
-    this.shopParams.pageIndex = event.page; 
+    this.shopParams.pageIndex = event; 
     this.getProducts(); 
   }
 }
