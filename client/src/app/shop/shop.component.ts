@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IPagination, IProduct } from '../shared/model/product';
 import { IAuthor, ICurrent, IType } from '../shared/model/product-details';
 import { ShopService } from './shop.service';
+import { ShopParams } from '../shared/model/shop-params';
 
 @Component({
   selector: 'app-shop',
@@ -9,22 +10,18 @@ import { ShopService } from './shop.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  @ViewChild('search', {static: true}) searchTerm: ElementRef;
+  @ViewChild('search', { static: true }) searchTerm: ElementRef;
   products: IProduct[];
   types: IType[];
   currents: ICurrent[];
   authors: IAuthor[];
-  typeSelected = 0;
-  currentSelected = 0;
-  authorSelected: number;
-  sortSelected = '';
   sortOptions = [
     { name: 'A-Z', value: 'name' },
     { name: 'Price asc.', value: 'priceAsc' },
     { name: 'Price desc', value: 'priceDesc' }
   ]
-  search: string;
-
+  shopParams = new ShopParams();
+  totalCount = 0;
 
   constructor(public shopService: ShopService) { }
 
@@ -36,8 +33,14 @@ export class ShopComponent implements OnInit {
     this.getProductAuthors();
   }
 
-  getProducts = () => this.shopService.getProducts(this.typeSelected, this.currentSelected, this.authorSelected, this.sortSelected, this.search)
-    .subscribe((response: IPagination) => this.products = response.data, error => console.log(error));
+  getProducts = () => this.shopService.getProducts(this.shopParams)
+    .subscribe((response: IPagination) => {
+      this.products = response.data;
+      this.shopParams.pageIndex = response.pageIndex;
+      this.shopParams.pageSize = response.pageSize;
+      this.totalCount = response.count;
+      console.log(response);
+    }, error => console.log(error));
 
   // getProductById = (id: number) => this.shopService.getProductById(id)
   //   .subscribe((response: IProduct) => console.log(response), error => console.log(error));
@@ -52,12 +55,12 @@ export class ShopComponent implements OnInit {
     .subscribe((response: IAuthor[]) => this.authors = [{ id: 0, name: 'All Artists' }, ...response], error => console.log(error));
 
   onTypeSelected = (typeId: number) => {
-    this.typeSelected = typeId;
+    this.shopParams.typeId = typeId;
     this.getProducts();
   }
 
   onCurrentSelected = (currentId: number) => {
-    this.currentSelected = currentId;
+    this.shopParams.currentId = currentId;
     this.getProducts();
   }
 
@@ -67,18 +70,23 @@ export class ShopComponent implements OnInit {
   // }
 
   onSortSelected = (sort: string) => {
-    this.sortSelected = sort;
+    this.shopParams.sort = sort;
     this.getProducts();
   }
 
   onSearch = () => {
-    this.search = this.searchTerm.nativeElement.value;
+    this.shopParams.search = this.searchTerm.nativeElement.value;
     this.getProducts();
   }
 
   onSearchReset = () => {
     this.searchTerm.nativeElement.value = '';
-    this.search ='';
+    this.shopParams.search = '';
     this.getProducts();
+  }
+
+  onPageChanged = (event: any) => { 
+    this.shopParams.pageIndex = event.page; 
+    this.getProducts(); 
   }
 }

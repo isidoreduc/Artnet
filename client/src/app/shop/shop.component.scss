@@ -1,4 +1,4 @@
-@import '../../styles.scss';
+@import "../../styles.scss";
 
 .active {
     background-color: $good-night-gray;
@@ -6,4 +6,16 @@
 
 .list-group-item {
     border: none;
+}
+
+.my-pagination::ng-deep {
+    .page-item .page-link {
+        color: black;
+        border: none;
+    }
+    .page-item.active .page-link {
+        color: #ffffff;
+        background-color: $good-night-gray !important;
+        
+    }
 }

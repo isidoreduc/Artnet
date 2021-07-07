@@ -3,30 +3,25 @@
         <div class="col-sm-12 col-md-3">
             <h5>Sort</h5>
             <select class="custom-select" (change)='onSortSelected($event.target.value)'>
-                <option *ngFor="let item of sortOptions"
-                    [value]='item.value'>
-                        {{item.name}}
+                <option *ngFor="let item of sortOptions" [value]='item.value'>
+                    {{item.name}}
                 </option>
             </select>
 
             <h5 class="mt-5">Types</h5>
             <ul class="list-group">
-                <li class="list-group-item"
-                    *ngFor="let item of types" 
-                    [class.active]="typeSelected === item.id" 
+                <li class="list-group-item" *ngFor="let item of types" [class.active]="shopParams.typeId === item.id"
                     (click)="onTypeSelected(item.id)">
-                        {{item.name}}
+                    {{item.name}}
                 </li>
             </ul>
-            
+
 
             <h5 class="mt-5">Currents</h5>
             <ul class="list-group">
-                <li class="list-group-item"
-                    *ngFor="let item of currents" 
-                    [class.active]="currentSelected === item.id" 
-                    (click)="onCurrentSelected(item.id)">
-                        {{item.name}}
+                <li class="list-group-item" *ngFor="let item of currents"
+                    [class.active]="shopParams.currentId === item.id" (click)="onCurrentSelected(item.id)">
+                    {{item.name}}
                 </li>
             </ul>
 
@@ -39,17 +34,23 @@
                 </option>
             </select> -->
         </div>
-        
-        
+
+
         <div class="col-md-9">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <header>
-                    <span>Showing <b>10</b> of <b>16</b> products</span>
+                    <span *ngIf="totalCount > 0">Showing <b>{{(shopParams.pageIndex -1) * shopParams.pageSize + 1 }} -
+                            {{shopParams.pageSize * shopParams.pageIndex > totalCount ? totalCount :
+                            shopParams.pageSize * shopParams.pageIndex}}</b>
+                        of <b>{{totalCount}}</b> products</span>
+                    <span *ngIf="totalCount === 0">No results</span>
                 </header>
-                <div class="form-inline">
-                    <input #search type="text" class="form-control" placeholder="Search...">
-                    <button type="button" class="btn btn-outline-primary mx-2" (click)="onSearch()">Search</button>
-                    <button type="button" class="btn btn-outline-primary" (click)="onSearchReset()">Reset</button>
+                <div class="form-inline ">
+                    <div class="input-group input-group-sm">
+                        <input #search type="text" class="form-control " placeholder="Search...">
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-dark mx-2" (click)="onSearch()">Search</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" (click)="onSearchReset()">Reset</button>
                 </div>
             </div>
 
@@ -58,6 +59,11 @@
                     <app-product [product]='item'></app-product>
                 </div>
             </div>
+
+            <pagination *ngIf="totalCount !== 0 && !(totalCount <= shopParams.pageSize)" class="d-flex justify-content-center my-pagination"
+                [boundaryLinks]="true" [totalItems]="totalCount" (pageChanged)="onPageChanged($event)"
+                [itemsPerPage]="shopParams.pageSize">
+            </pagination>
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@ namespace Infrastructure.Data
 
             query = specification.OrderByDescending != null ? query.OrderByDescending(specification.OrderByDescending) : query;
             // paging specification should be after all other sorting or filtering, so you sort from all, not just paginated
-            query = specification.IsPagingEnabled ? query.Take(specification.Take).Skip(specification.Skip) : query;
+            query = specification.IsPagingEnabled ? query.Skip(specification.Skip).Take(specification.Take) : query;
 
             query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
             return query;
