@@ -1,1 +1,175 @@
-<p *ngIf="product">{{product.name}}</p>
+<div class="container" *ngIf="product">
+    <div class="row mt-5">
+        <div class="col-md-6 py-3">
+            <img src="{{product.pictureUrl}}" alt="image" class="img-fluid">
+        </div>
+        <div class="d-flex align-items-center col-md-6 col-xl-5 py-3">
+            <div>
+                <ul class="breadcrumb justify-content-start">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="category.html">Tops and Jackets</a></li>
+                    <li class="breadcrumb-item active">Modern Jacket</li>
+                </ul>
+                <h1 class="mb-4">{{product.name}}</h1>
+                <p>by <span>{{product.author}}</span></p>
+                <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
+                    <ul class="list-inline mb-2 mb-sm-0">
+                        <li class="list-inline-item h4 fw-light mb-0">{{product.price | currency}}</li>
+                        <li class="list-inline-item text-muted fw-light">
+                            <del>{{product.price + product.price/5 | currency}}</del>
+                        </li>
+                    </ul>
+                    <!-- <div class="d-flex align-items-center">
+                        <ul class="list-inline me-2 mb-0">
+                            <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                            <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                            <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                            <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                            <li class="list-inline-item me-0"><i class="fa fa-star text-gray-300"></i></li>
+                        </ul><span class="text-muted text-uppercase text-sm">25 reviews</span>
+                    </div> -->
+                </div>
+                <p class="mb-4 text-muted">{{product.description}}</p>
+
+                <ul class="list-inline">
+                    <li class=" detail-option list-inline-item mb-5">
+                        <label class="detail-option-heading fw-bold">Items <span>(required)</span></label>
+                        <input class="form-control detail-quantity" name="items" type="number" value="1">
+                    </li>
+                    <li class="list-inline-item">
+                        <button class="btn btn-dark btn-lg mb-1" type="submit"> <i
+                                class="fa fa-shopping-cart mr-2"></i>Add to Cart</button>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    
+    <!-- <section class="my-5">
+        <div class="container">
+            <header class="text-center">
+                <h6 class="text-uppercase mb-5">You might also like</h6>
+            </header>
+            <div class="row" >
+               
+                <div class="col-lg-3 col-md-4 col-6" *ngFor="let item of selection">
+                    <a class="text-dark" routerLink="/shop/{{item.id}}" style="text-decoration: none;">
+                        <div class="product-image">
+                            <img class="img-fluid" style="max-height: 150px;"
+                                src="{{item.pictureUrl}}"
+                                alt="product">
+                    
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">{{item.author}}</p>
+                            <h3 class="h6 text-uppercase mb-1">{{item.name}}</h3>
+                            <span class="text-muted">{{item.price | currency}}</span>
+                        </div>
+                    </a>
+                </div>
+              
+
+
+            </div>
+        </div>
+    </section>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row"> -->
+<!-- <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                            <h6 class="detail-option-heading">Size <span>(required)</span></h6>
+                            <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_0"> Small
+                                <input class="input-invisible" type="radio" name="size" value="value_0" id="size_0"
+                                    required="">
+                            </label>
+                            <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_1"> Medium
+                                <input class="input-invisible" type="radio" name="size" value="value_1" id="size_1"
+                                    required="">
+                            </label>
+                            <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_2"> Large
+                                <input class="input-invisible" type="radio" name="size" value="value_2" id="size_2"
+                                    required="">
+                            </label>
+                        </div>
+                        <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                            <h6 class="detail-option-heading">Type <span>(required)</span></h6>
+                            <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="material_0">
+                                Hoodie
+                                <input class="input-invisible" type="radio" name="material" value="value_0"
+                                    id="material_0" required="">
+                            </label>
+                            <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="material_1">
+                                College
+                                <input class="input-invisible" type="radio" name="material" value="value_1"
+                                    id="material_1" required="">
+                            </label>
+                        </div> -->
+<!-- <div class="col-12 detail-option mb-3">
+                            <h6 class="detail-option-heading">Colour <span>(required)</span></h6>
+                            <ul class="list-inline mb-0 colours-wrapper">
+                                <li class="list-inline-item">
+                                    <label class="btn-colour" for="colour_Blue" style="background-color: #668cb9">
+                                    </label>
+                                    <input class="input-invisible" type="radio" name="colour" value="value_Blue"
+                                        id="colour_Blue" required="">
+                                </li>
+                                <li class="list-inline-item">
+                                    <label class="btn-colour" for="colour_White" style="background-color: #fff">
+                                    </label>
+                                    <input class="input-invisible" type="radio" name="colour" value="value_White"
+                                        id="colour_White" required="">
+                                </li>
+                                <li class="list-inline-item">
+                                    <label class="btn-colour" for="colour_Violet" style="background-color: #8b6ea4">
+                                    </label>
+                                    <input class="input-invisible" type="radio" name="colour" value="value_Violet"
+                                        id="colour_Violet" required="">
+                                </li>
+                                <li class="list-inline-item">
+                                    <label class="btn-colour" for="colour_Red" style="background-color: #dd6265">
+                                    </label>
+                                    <input class="input-invisible" type="radio" name="colour" value="value_Red"
+                                        id="colour_Red" required="">
+                                </li>
+                            </ul>
+                        </div> -->
+
+<!-- </div> -->
+<!-- <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <button class="btn btn-dark btn-lg mb-1" type="submit"> <i
+                                class="fa fa-shopping-cart me-2"></i>Add to Cart</button>
+                    </li>
+                    <li class="list-inline-item"><a class="btn btn-outline-secondary mb-1" href="#"> <i
+                                class="far fa-heart me-2"></i>Add to wishlist</a></li>
+                </ul> -->
