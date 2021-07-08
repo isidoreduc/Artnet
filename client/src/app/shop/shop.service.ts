@@ -25,7 +25,7 @@ export class ShopService {
     return this.http.get<IPagination>(this.baseurl + "products", { params: params })
   };
 
-  // getProductById = (id: number) => this.http.get<IProduct>(this.baseurl + `products/${id}`);
+  getProductById = (id: number) => this.http.get<IProduct>(this.baseurl + `products/${id}`);
 
   getProductTypes = () => this.http.get<IType[]>(this.baseurl + 'products/types');
   getProductAuthors = () => this.http.get<IType[]>(this.baseurl + 'products/authors');

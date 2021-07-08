@@ -1,5 +1,14 @@
 @import "../../../styles.scss";
 
 .text-uppercase {
-    color: $free-speech-blue;
+    color: $good-night-gray;
+}
+
+.my-card {
+    text-decoration: none;
+}
+
+.my-card:hover {
+    opacity: 0.8;
+    transform: scale(1.025);
 }
