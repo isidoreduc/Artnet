@@ -5,4 +5,9 @@
         <button class="btn btn-danger"(click)="get500Error()">500 Error</button>
         <button class="btn btn-danger"(click)="get400ValidationError()">400 Validation Error</button>
     </div>
+    <div class="text-danger mt-5">
+        <ul *ngIf="validationErrors">
+            <li *ngFor="let item of validationErrors"><b>{{item}}</b></li>
+        </ul>
+    </div>
 </div>
