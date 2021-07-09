@@ -1,11 +1,14 @@
-<section class="py-3" style="background-color: #F4F4F4;">
-    <div class="container">
+<ng-container *ngIf="breadcrumbService.breadcrumbs$ | async as breadcrumbs">
 
-        <div class="d-flex align-items-center">
-            <h5 class="col-md-8">title</h5>
-            <div class="col-md-4 ">
-                <xng-breadcrumb separator=">"></xng-breadcrumb>
+    <section *ngIf="breadcrumbs[breadcrumbs.length - 1]?.label !== 'Home'" class="py-3" style="background-color: #F4F4F4;">
+        <div class="container">
+    
+            <div class="d-flex align-items-center justify-content-between">
+                <h2 class="col-md-8 title ">{{breadcrumbs[breadcrumbs.length - 1]?.label}}</h2>
+                <div class="col-md-4 ">
+                    <xng-breadcrumb separator=">"></xng-breadcrumb>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</ng-container>

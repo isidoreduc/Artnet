@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreadcrumbService } from 'xng-breadcrumb';
 
 @Component({
   selector: 'app-section-breadcrumb',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionBreadcrumbComponent implements OnInit {
 
-  constructor() { }
+  constructor(public breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
   }
