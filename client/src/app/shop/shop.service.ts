@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { IPagination, IProduct } from '../shared/model/product';
 import { IType } from '../shared/model/product-details';
 import { ShopParams } from '../shared/model/shop-params';
@@ -9,7 +9,7 @@ import { ShopParams } from '../shared/model/shop-params';
   providedIn: 'root'
 })
 export class ShopService {
-  baseurl = 'https://localhost:5001/api/'
+  baseurl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
