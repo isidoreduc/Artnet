@@ -12,3 +12,10 @@
     opacity: 0.8;
     transform: scale(1.025);
 }
+
+button {
+    background-color: $minty-green;
+    &:hover {
+        background-color: $good-night-gray;
+    }
+}

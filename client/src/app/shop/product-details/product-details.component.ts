@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/shared/model/product';
 import { ShopParams } from 'src/app/shared/model/shop-params';
+import { BreadcrumbService } from 'xng-breadcrumb';
 import { ShopService } from '../shop.service';
 
 @Component({
@@ -15,20 +16,23 @@ export class ProductDetailsComponent implements OnInit {
   shopParams = new ShopParams();
   selection: IProduct[] = [];
 
-  constructor(private shopService: ShopService, private routeActive: ActivatedRoute) { }
+  constructor(private shopService: ShopService, private routeActive: ActivatedRoute, private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
     this.shopParams.pageSize = 50;
     this.getProductById();
-    this.getProducts();
+    // this.getProducts();
     // this.getRandomProds();
   }
 
   getProductById = () => this.shopService.getProductById(Number(this.routeActive.snapshot.paramMap.get('id')))
-    .subscribe(p => this.product = p, err => console.log(err));
+    .subscribe(p => {
+      this.product = p;
+      this.breadcrumbService.set("@productDetails", this.product.name);
+    }, err => console.log(err));
 
-  getProducts = () => this.shopService.getProducts(this.shopParams)
-    .subscribe(p => this.products = p.data, err => console.log(err));
+  // getProducts = () => this.shopService.getProducts(this.shopParams)
+  //   .subscribe(p => this.products = p.data, err => console.log(err));
 
   //  getRandomProds = async () => {
   //   var prods = await this.shopService.getProducts(this.shopParams).toPromise();

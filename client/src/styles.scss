@@ -11,3 +11,28 @@ $green-teal: #05c46b;
     box-shadow: none;
     border-color: initial;
 }
+
+.xng-breadcrumb-root {
+    padding: 8px 16px;
+    display: inline;
+    border-radius: 0;
+}
+
+label.xng-breadcrumb-trail {
+    margin-bottom: 0;
+    color: $minty-green;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.xng-breadcrumb-link {
+    text-decoration: none !important; 
+    &:hover {
+        color: $minty-green;
+        transform: scale(1.1);
+    } 
+}
+
+.xng-breadcrumb-separator {
+    // margin: 0 54px ;
+}
