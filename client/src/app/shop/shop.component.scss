@@ -7,11 +7,12 @@
 .list-group-item {
     border: none;
     cursor: pointer;
+    opacity: 0.85;
+    &:hover {
+        transform: scale(1.025);
+        opacity: 1;
+    }
 }
 
-.list-group-item:hover {
-    transform: scale(1.025);
-    opacity: 0.8;
-}
 
 

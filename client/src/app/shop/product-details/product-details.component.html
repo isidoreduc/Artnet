@@ -5,11 +5,7 @@
         </div>
         <div class="d-flex align-items-center col-md-6 col-xl-5 py-3">
             <div>
-                <!-- <ul class="breadcrumb justify-content-start">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="category.html">Tops and Jackets</a></li>
-                    <li class="breadcrumb-item active">Modern Jacket</li>
-                </ul> -->
+               
                 <h1 class="mb-4">{{product.name}}</h1>
                 <p>by <span>{{product.author}}</span></p>
                 <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
@@ -19,21 +15,13 @@
                             <del>{{product.price + product.price/5 | currency}}</del>
                         </li>
                     </ul>
-                    <!-- <div class="d-flex align-items-center">
-                        <ul class="list-inline me-2 mb-0">
-                            <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                            <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                            <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                            <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                            <li class="list-inline-item me-0"><i class="fa fa-star text-gray-300"></i></li>
-                        </ul><span class="text-muted text-uppercase text-sm">25 reviews</span>
-                    </div> -->
+                    
                 </div>
                 <p class="mb-4 text-muted">{{product.description}}</p>
 
                 <ul class="list-inline">
                     <li class=" detail-option list-inline-item mb-5">
-                        <label class="detail-option-heading fw-bold">Items <span>(required)</span></label>
+                        <label class="detail-option-heading fw-bold">Items</label>
                         <input class="form-control detail-quantity" name="items" type="number" value="1">
                     </li>
                     <li class="list-inline-item">

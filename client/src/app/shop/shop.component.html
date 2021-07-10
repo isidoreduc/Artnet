@@ -1,6 +1,7 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col-sm-12 col-md-3">
+<!-- filtering -->
             <h5>Sort</h5>
             <select class="custom-select" (change)='onSortSelected($event.target.value)'>
                 <option *ngFor="let item of sortOptions" [value]='item.value'>
@@ -24,6 +25,7 @@
                     {{item.name}}
                 </li>
             </ul>
+<!-- filtering -->
 
             <!-- <h5 class="mt-5">Artists</h5>
             <select class="custom-select" (change)="onAuthorSelected($event.target.value)">
@@ -38,11 +40,14 @@
 
         <div class="col-md-9">
             <div class="d-flex justify-content-between align-items-center mb-2">
+<!-- pagination header -->
                 <app-pagination-header [totalCount]="totalCount" 
                     [pageIndex]="shopParams.pageIndex"
                     [pageSize]="shopParams.pageSize">
                 </app-pagination-header>
-                
+<!-- pagination header -->
+
+<!-- search bar -->
                 <div class="form-inline ">
                     <div class="input-group input-group-sm">
                         <input #search type="text" class="form-control " placeholder="Search...">
@@ -50,19 +55,23 @@
                     <button type="button" class="btn btn-sm btn-outline-dark mx-2" (click)="onSearch()" >Search</button>
                     <button type="button" class="btn btn-sm btn-outline-success" (click)="onSearchReset()">Reset</button>
                 </div>
+<!-- search bar -->
             </div>
-
+<!-- products -->
             <div class="row">
                 <div class="col-md-6 col-lg-4 my-3" *ngFor="let item of products">
                     <app-product [product]='item'></app-product>
                 </div>
             </div>
+<!-- products /-->
 
+<!-- pagination -->
             <app-pagination (pageChangedEvent)="onPageChanged($event)" 
                 [totalCount]="totalCount"
                 [pageSize]="shopParams.pageSize"
                 >
             </app-pagination>
+<!-- pagination -->
         </div>
     </div>
 </div>
