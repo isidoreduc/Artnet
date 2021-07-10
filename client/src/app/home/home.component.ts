@@ -7,11 +7,11 @@ import { BreadcrumbService } from 'xng-breadcrumb';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  date: Date;
   constructor(private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
-    // this.breadcrumbService.set("@home", {skip: true});
+    this.date = new Date();
   }
 
 }

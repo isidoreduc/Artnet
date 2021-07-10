@@ -10,7 +10,7 @@ import { ShopParams } from '../shared/model/shop-params';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  @ViewChild('search', { static: true }) searchTerm: ElementRef;
+  @ViewChild('search') searchTerm: ElementRef;
   products: IProduct[];
   types: IType[];
   currents: ICurrent[];

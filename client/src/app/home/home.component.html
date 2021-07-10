@@ -1,1 +1,144 @@
-<p>home works!</p>
+<!-- carousel -->
+<carousel [noPause]="false" [isAnimated]="true">
+    <slide>
+        <img src="assets\carousel\street.jpg" alt="Third slide" style="display: block; width: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Street art in Bristol</h3>
+            <p>by Banksy jr.</p>
+        </div>
+    </slide>
+    <slide>
+        <img src="assets\carousel\pollock.jpg" alt="Second slide" style="display: block; width: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Starry night</h3>
+            <p>by Jackson Pollock</p>
+        </div>
+    </slide>
+    <slide>
+        <img src="assets\carousel\sagrada.jpg" alt="Third slide" style="display: block; width: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Sagrada Familia</h3>
+            <p>by Antoni Gaudi</p>
+        </div>
+    </slide>
+    <slide>
+        <img src="assets/carousel/Harvest Fields in Westerham by Helen Allingham.jpg" alt="First slide"
+            style="display: block; width: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Harvest Fields in Westerham</h3>
+            <p>by Helen Allingham</p>
+        </div>
+    </slide>
+</carousel>
+<!-- carousel -->
+
+
+<div class="container">
+<!-- find more -->
+    <main role="main" class="mx-auto col-md-6 my-5">
+        <h1 class="cover-heading text-center">Cover your walls.</h1>
+        <p class="lead text-center">Cover is a one-page template for building simple and beautiful home pages. Download,
+            edit the
+            text, and add your own fullscreen background photo to make it your own.</p>
+        <p class="lead text-center">
+            <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+        </p>
+    </main>
+<!-- find more -->
+
+<!-- price cards -->
+    <div class="card-deck mt-5 text-center">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Starter</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title pricy">$8 <small class="text-muted">/ mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>10 prints monthly included</li>
+                    <li>2 free frames</li>
+                    <li>Email support</li>
+                    <li>Help center access</li>
+                </ul>
+                <button type="button" class="btn btn-lg btn-block buttony">Get started</button>
+            </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Pro</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title pricy">$15 <small class="text-muted">/ mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>20 prints monthly included</li>
+                    <li>10 free frames</li>
+                    <li>Priority email support</li>
+                    <li>Help center access</li>
+                </ul>
+                <button type="button" class="btn btn-lg btn-block ">Sign up right now</button>
+            </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Enterprise</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title pricy">$29 <small class="text-muted">/ mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>30 prints monthly included</li>
+                    <li>15 free frames</li>
+                    <li>Phone and email support</li>
+                    <li>Help center access</li>
+                </ul>
+                <button type="button" class="btn btn-lg btn-block">Contact us</button>
+            </div>
+        </div>
+    </div>
+<!-- price cards -->
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+            <div class="col-12 col-md">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img"
+                    viewBox="0 0 24 24" focusable="false">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path
+                        d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94">
+                    </path>
+                </svg>
+                <small class="d-block mb-3 text-muted">© 2017-{{date.getFullYear()}}</small>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Features</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Cool stuff</a></li>
+                    <li><a class="text-muted" href="#">Random feature</a></li>
+                    <li><a class="text-muted" href="#">Team feature</a></li>
+                    <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                    <li><a class="text-muted" href="#">Another one</a></li>
+                    <li><a class="text-muted" href="#">Last time</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Resources</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Resource</a></li>
+                    <li><a class="text-muted" href="#">Resource name</a></li>
+                    <li><a class="text-muted" href="#">Another resource</a></li>
+                    <li><a class="text-muted" href="#">Final resource</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>About</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Team</a></li>
+                    <li><a class="text-muted" href="#">Locations</a></li>
+                    <li><a class="text-muted" href="#">Privacy</a></li>
+                    <li><a class="text-muted" href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</div>

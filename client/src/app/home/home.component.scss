@@ -1,0 +1,40 @@
+@import "../../styles.scss";
+
+img {
+    object-fit: cover;
+    height: 600px;
+}
+
+.carousel-caption {
+    p {
+        color: $minty-green;
+        font-size: larger;
+        font-weight: bold;
+    }
+}
+
+.card-deck {
+
+    .pricy {
+        color: $minty-green;
+    }
+
+    button {
+        background-color: $minty-green;
+        color: white;
+        &:active {
+            background-color: white;
+            color: $minty-green;
+        }
+    }
+
+    .buttony {
+        background-color: white;
+        color: $minty-green;
+        border: 2px solid $minty-green ;
+        &:active {
+            background-color: $minty-green;
+            color: white;
+        }
+    }
+}

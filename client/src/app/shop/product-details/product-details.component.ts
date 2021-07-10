@@ -12,17 +12,14 @@ import { ShopService } from '../shop.service';
 })
 export class ProductDetailsComponent implements OnInit {
   product: IProduct;
-  products: IProduct[];
-  shopParams = new ShopParams();
-  selection: IProduct[] = [];
 
-  constructor(private shopService: ShopService, private routeActive: ActivatedRoute, private breadcrumbService: BreadcrumbService) { }
+
+  constructor(private shopService: ShopService, private routeActive: ActivatedRoute, private breadcrumbService: BreadcrumbService) {
+    this.breadcrumbService.set("@productDetails"," "); // space, not empty string - show nothing under spinner
+   }
 
   ngOnInit(): void {
-    this.shopParams.pageSize = 50;
     this.getProductById();
-    // this.getProducts();
-    // this.getRandomProds();
   }
 
   getProductById = () => this.shopService.getProductById(Number(this.routeActive.snapshot.paramMap.get('id')))
@@ -30,17 +27,4 @@ export class ProductDetailsComponent implements OnInit {
       this.product = p;
       this.breadcrumbService.set("@productDetails", this.product.name);
     }, err => console.log(err));
-
-  // getProducts = () => this.shopService.getProducts(this.shopParams)
-  //   .subscribe(p => this.products = p.data, err => console.log(err));
-
-  //  getRandomProds = async () => {
-  //   var prods = await this.shopService.getProducts(this.shopParams).toPromise();
-  //   for (let index = 0; index < 4; index++) {
-  //     let random = prods.data[Math.floor(Math.random()*prods.data.length)].id;
-  //     const element: IProduct = prods.data[random];
-  //     this.selection.push(element);
-  //   }
-  //   return this.selection;
-  // }
 }
