@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { BasketService } from './basket/basket.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,17 @@ import { OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Artnet';
+
+  constructor(private basketService: BasketService) {}
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const id = localStorage.getItem("basket_id");
+    console.log(id);
+    if(id)
+      this.basketService.getBasket(id).subscribe(() => console.log(this.basketService.basket$)); 
+    
+  }
+
+
 }
 

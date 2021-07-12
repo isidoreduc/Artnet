@@ -11,6 +11,7 @@ import { ErrorsInterceptor } from './core/interceptors/errors.interceptor';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { HomeModule } from './home/home.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { HomeModule } from './home/home.module';
     HttpClientModule,
     CoreModule,
     HomeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorsInterceptor, multi: true},

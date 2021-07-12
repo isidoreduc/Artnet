@@ -15,13 +15,18 @@
     &:hover {
         transform: scale(1.025);
     }
-}
 
+    button {
+        background-color: $minty-green;
+        &:hover {
+            background-color: $good-night-gray;
+        }
 
-
-button {
-    background-color: $minty-green;
-    &:hover {
-        background-color: $good-night-gray;
+    }
+    .fa-shopping-cart {
+        background-color: white;
     }
 }
+
+
+
