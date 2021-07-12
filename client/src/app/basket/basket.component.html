@@ -1,0 +1,105 @@
+<div class="container mt-5" *ngIf="basket$ | async as basket">
+    <!-- <ng-container *ngIf="basket.items.length > 0"> -->
+
+    <!-- Start row -->
+    <div class="row ">
+        <!-- Start col -->
+        <div class="col-md-12 col-lg-12 col-xl-12 ">
+
+            <div class="table-responsive ">
+                <table class="table table-borderless ">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col" class="text-right">Total</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of basket.items; let i=index">
+                            <th scope="row">{{i+1}}</th>
+                            <td><a routerLink="/shop/{{item.id}}"><img src="{{item.pictureUrl}}" class="img-fluid"
+                                        width="50" alt="product"></a></td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.price | currency}}</td>
+                            <td>
+                                <div class="form-group mb-0" style="max-width: 5rem;">
+                                    <input type="number" class="form-control cart-qty" name="cartQty1" id="cartQty1"
+                                        value="{{item.quantity}}">
+                                </div>
+                            </td>
+                            <td class="text-right">$500</td>
+                            <!-- <td><a href="#" class="text-danger" (click)="deleteItem(item)"><i
+                                        class="fa fa-trash fa-lg"></i></a></td> -->
+                            <td><a href="#" class="text-danger"><i class="fa fa-trash fa-lg"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
+            <div class="order-note">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="search" class="form-control" placeholder="Coupon Code" aria-label="Search"
+                                aria-describedby="button-addonTags">
+                            <div class="input-group-append">
+                                <button class="input-group-text" type="submit" id="button-addonTags">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialNotes">Special Note for this
+                            order:</label>
+                        <textarea class="form-control" name="specialNotes" id="specialNotes" rows="3"
+                            placeholder="Message here"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
+            <div class="order-total table-responsive ">
+                <table class="table table-borderless text-right">
+                    <tbody>
+                        <tr>
+                            <td>Sub Total :</td>
+                            <td>$1000.00</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping :</td>
+                            <td>$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Tax(18%) :</td>
+                            <td>$180.00</td>
+                        </tr>
+                        <tr>
+                            <td class="f-w-7 font-18">
+                                <h4>Amount :</h4>
+                            </td>
+                            <td class="f-w-7 font-18">
+                                <h4>$1180.00</h4>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-footer text-right">
+        <button type="button" class="btn btn-outline-info my-1">Update Cart</button>
+        <a href="page-checkout.html" class="btn btn-outline-success mx-3">Proceed to Checkout</a>
+    </div>
+    <!-- </ng-container> -->
+
+    <!-- <ng-container *ngIf="basket.items.length === 0">
+        <h3>Please, add some products first.</h3>
+    </ng-container> -->
+</div>

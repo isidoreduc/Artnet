@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -14,7 +15,7 @@ export class BasketService {
   private basketSource = new BehaviorSubject<IBasket>({ id: '', items: [] });
   basket$ = this.basketSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getBasket = (id: string) =>
     this.http.get<IBasket>(this.baseUrl + `basket?basketId=${id}`)
@@ -26,7 +27,7 @@ export class BasketService {
   createOrUpdateBasket = (basket: IBasket) => this.http.post<IBasket>(this.baseUrl + "basket", basket)
     .subscribe(response => {
       this.basketSource.next(response);
-      console.log(response)
+      console.log(response);
     }, err => console.log(err));
 
 
@@ -45,7 +46,20 @@ export class BasketService {
       basket.items.push(itemToAdd);
     }
     this.createOrUpdateBasket(basket);
-  }
+  };
+
+  // deleteItemFromBasket = (item: IBasketItem) => {
+  //   let basket = this.basketSource.value;
+  //   basket.items = basket.items.some(i => i.id === item.id) ? basket.items.filter(i => i.id !== item.id) : basket.items;
+  //   if (basket.items.length > 0) {
+  //     this.createOrUpdateBasket(basket);
+  //     this.router.navigateByUrl("/");
+  //   }
+  //   else {
+  //     this.deleteBasket(basket.id);
+  //     this.router.navigateByUrl("/home");
+  //   }
+  // };
 
 
 
@@ -62,11 +76,11 @@ export class BasketService {
       current: item.productCurrent
     };
     return mapped;
-  }
+  };
 
   private createBasket = (): IBasket => {
     const basket = new Basket();
     localStorage.setItem("basket_id", basket.id);
     return basket;
-  }
+  };
 }

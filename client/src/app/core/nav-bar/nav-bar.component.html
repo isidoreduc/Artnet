@@ -13,17 +13,23 @@
         </a>
         <div class="d-flex align-items-center   ">
             <a class="mx-3" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-            <a class="mx-3" routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Products</a>
-            <a class="mx-3" routerLink="/test-error" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">TestError</a>
+            <a class="mx-3" routerLink="/shop" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">Products</a>
+            <a class="mx-3" routerLink="/test-error" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">TestError</a>
             <a class="mx-3" href="#">Contact</a>
         </div>
-        <div class="d-flex justify-content-between align-items-center links">
-            <a class="position-relative mr-3" routerLink="basket">
+        <div class="d-flex justify-content-between align-items-center links" *ngIf="basket$ | async as basket">
+            <a class="position-relative mr-3" (click)="navigateToBasket()">
                 <i class="fa fa-shopping-cart "></i>
-                <div class="cart-no">5</div>
+                <div *ngIf="basket.items.length > 0" class="cart-no">
+                    {{basket.items.length }}</div>
             </a>
             <a class="mx-3" href="#">Login</a>
             <a class="mx-3" href="#">Sign up</a>
         </div>
     </div>
 </nav>
+
+
+<!-- [ngClass]="basket.items.length > 0 ? 'cart-no' : ''" -->

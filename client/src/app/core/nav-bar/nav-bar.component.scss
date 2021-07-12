@@ -1,10 +1,11 @@
 @import "../../../styles.scss";
 
 .site-header {
-    background-color: rgba(0, 0, 0, .85);
+    background-color: rgba(0, 0, 0, 0.85);
     a {
         color: lightgray;
         text-decoration: none;
+        cursor: pointer;
 
         &.active {
             color: $minty-green;
@@ -13,23 +14,20 @@
         }
 
         &:hover {
-            color:white;
+            color: white;
             transform: scale(1.1);
-        }      
+        }
     }
 
-   
-
     .logo {
-        color:lightgray;
+        color: lightgray;
 
-        &:hover{
-            color:white;
+        &:hover {
+            color: white;
             transform: rotate(-45deg) scale(1.2);
         }
     }
 
-    
     .cart-no {
         font-size: x-small;
         color: indigo;
