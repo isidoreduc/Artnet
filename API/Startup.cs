@@ -30,14 +30,16 @@ namespace API
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlite(_configuration["ConnectionStrings:SqliteConnection"]));
 
-            services.AddSingleton<ConnectionMultiplexer>(c => {
+            services.AddSingleton<IConnectionMultiplexer>(c => {
                 var configuration = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"));
                 return ConnectionMultiplexer.Connect(configuration);
             });
+            
 
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddCors(opt => opt.AddPolicy("AngularPolicy", policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")));
             services.AddOurServices(); // extension method 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
