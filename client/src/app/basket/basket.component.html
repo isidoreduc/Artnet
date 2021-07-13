@@ -6,7 +6,7 @@
     <ng-container *ngIf="basket.items.length > 0">
 
         <!-- Start row -->
-        <div class="row ">
+        <div class="row mb-5">
             <!-- Start col -->
             <div class="col-md-12 col-lg-12 col-xl-12 ">
 
@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of basket.items; let i=index" class="dropdown-divider">
+                            <tr *ngFor="let item of basket.items; let i=index" class="border-bottom">
                                 <th scope="row">{{i+1}}</th>
                                 <td><a routerLink="/shop/{{item.id}}"><img src="{{item.pictureUrl}}" class="img-fluid"
                                             width="50" alt="product"></a></td>
@@ -40,7 +40,6 @@
                                             (ngModelChange)="updateQuantity($event, item.id)" type="number"
                                             class="form-control" name="cartQty1" id="cartQty1"
                                             value="{{item.quantity}}">
-                                        <!-- <button></button> -->
                                     </div>
                                     <!-- end example of two way binding with event that persists the change -->
 
@@ -57,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6 mt-5">
+            <!-- <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6 mt-5">
                 <div class="order-note">
                     <form>
                         <div class="form-group">
@@ -105,12 +104,17 @@
                         </tbody>
                     </table>
                 </div>
+            </div> -->
+        </div>
+        <!-- Finish row -->
+        <!-- Order Summary -->
+        <div class="row">
+            <div class="col-md-6 col offset-6">
+                <app-order-totals></app-order-totals>
             </div>
         </div>
-        <div class="cart-footer text-right" ngif>
-            <button type="button" class="btn btn-outline-info my-1">Update Cart</button>
-            <a href="page-checkout.html" class="btn btn-outline-success mx-3">Proceed to Checkout</a>
-        </div>
+        <!-- End Order Summary -->
+
     </ng-container>
 
     <!-- </ng-container> -->
