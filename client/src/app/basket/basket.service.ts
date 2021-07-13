@@ -12,7 +12,7 @@ import { IProduct } from '../shared/model/product';
 })
 export class BasketService {
   baseUrl = environment.apiUrl;
-  private basketSource = new BehaviorSubject<IBasket>({ id: '', items: [] });
+  private basketSource = new BehaviorSubject<IBasket>(null);
   basket$ = this.basketSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -31,7 +31,11 @@ export class BasketService {
     }, err => console.log(err));
 
 
-  deleteBasket = (id: string) => this.http.delete<boolean>(this.baseUrl + `basket?basketid=${id}`);
+  deleteBasket = (id: string) => this.http.delete<boolean>(this.baseUrl + `basket?basketid=${id}`)
+    .subscribe(() => {
+      this.basketSource.next(null);
+      localStorage.removeItem("basket_id");
+    }, err => console.log(err));
 
   getCurrentBasketValue = () => this.basketSource.value;
 
@@ -48,18 +52,19 @@ export class BasketService {
     this.createOrUpdateBasket(basket);
   };
 
-  // deleteItemFromBasket = (item: IBasketItem) => {
-  //   let basket = this.basketSource.value;
-  //   basket.items = basket.items.some(i => i.id === item.id) ? basket.items.filter(i => i.id !== item.id) : basket.items;
-  //   if (basket.items.length > 0) {
-  //     this.createOrUpdateBasket(basket);
-  //     this.router.navigateByUrl("/");
-  //   }
-  //   else {
-  //     this.deleteBasket(basket.id);
-  //     this.router.navigateByUrl("/home");
-  //   }
-  // };
+  deleteItemFromBasket = (item: IBasketItem) => {
+    let basket = this.basketSource.value;
+    basket.items = basket.items.some(i => i.id === item.id) ? basket.items.filter(i => i.id !== item.id) : basket.items;
+    if (basket.items.length > 0) {
+      this.createOrUpdateBasket(basket);
+      // this.router.navigateByUrl("/");
+      // window.onbeforeunload = () => "";
+    }
+    else {
+      this.deleteBasket(basket.id);
+      this.router.navigateByUrl("/");
+    }
+  };
 
 
 

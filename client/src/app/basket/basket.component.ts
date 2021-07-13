@@ -17,5 +17,5 @@ export class BasketComponent implements OnInit {
     this.basket$ = this.basketService.basket$;
   }
 
-  // deleteItem = (item: IBasketItem) => this.basketService.deleteItemFromBasket(item);
+  deleteItem = (item: IBasketItem) => this.basketService.deleteItemFromBasket(item);
 }

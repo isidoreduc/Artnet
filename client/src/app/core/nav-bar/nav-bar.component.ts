@@ -11,17 +11,17 @@ import { IBasket, IBasketItem } from 'src/app/shared/model/basket';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  basket: IBasket;
   basket$: Observable<IBasket>;
-  items: IBasketItem[];
   constructor(private basketService: BasketService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
-    this.basket$.subscribe(basket => this.items = basket.items, err => console.log(err));
   }
 
   navigateToBasket = () => {
-    if (this.items.length === 0)
+    this.basket = this.basketService.getCurrentBasketValue();
+    if (!this.basket)
       this.toastr.warning("Please add items in the basket first", "Basket empty");
     else this.router.navigateByUrl('/basket');
   };

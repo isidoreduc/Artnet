@@ -19,6 +19,15 @@
         }
     }
 
+    .icon {
+        color: lightgray;
+        cursor: pointer;
+        &:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+    }
+
     .logo {
         color: lightgray;
 

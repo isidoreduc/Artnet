@@ -19,12 +19,12 @@
                 [routerLinkActiveOptions]="{exact: true}">TestError</a>
             <a class="mx-3" href="#">Contact</a>
         </div>
-        <div class="d-flex justify-content-between align-items-center links" *ngIf="basket$ | async as basket">
-            <a class="position-relative mr-3" (click)="navigateToBasket()">
+        <div class="d-flex justify-content-between align-items-center links">
+            <div class="position-relative mr-5 icon" (click)="navigateToBasket()">
                 <i class="fa fa-shopping-cart "></i>
-                <div *ngIf="basket.items.length > 0" class="cart-no">
-                    {{basket.items.length }}</div>
-            </a>
+                <div *ngIf="(basket$ | async)?.items.length > 0" class="cart-no">
+                    {{(basket$ | async).items.length }}</div>
+            </div>
             <a class="mx-3" href="#">Login</a>
             <a class="mx-3" href="#">Sign up</a>
         </div>

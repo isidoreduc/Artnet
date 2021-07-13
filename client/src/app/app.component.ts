@@ -11,14 +11,14 @@ import { v4 as uuidv4 } from 'uuid';
 export class AppComponent implements OnInit {
   title = 'Artnet';
 
-  constructor(private basketService: BasketService) {}
-  
+  constructor(private basketService: BasketService) { }
+
   ngOnInit(): void {
     const id = localStorage.getItem("basket_id");
     console.log(id);
-    if(id)
-      this.basketService.getBasket(id).subscribe(() => console.log(this.basketService.basket$)); 
-    
+    if (id)
+      this.basketService.getBasket(id).subscribe(() =>
+        console.log(this.basketService.basket$), err => console.log(err));
   }
 
 
