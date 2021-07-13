@@ -22,8 +22,7 @@ export class BasketComponent implements OnInit {
   deleteItem = (item: IBasketItem) => this.basketService.deleteItemFromBasket(item);
 
   updateQuantity = (event: number, basketItemId: number) => {
-    // event = event < 0 ? 1 : event;
-
+    event = event < 0 ? 1 : event;
     let basket = this.basketService.getCurrentBasketValue();
     let basketItem = basket.items.filter(i => i.id === basketItemId)[0];
     basketItem.quantity = event;
@@ -33,7 +32,4 @@ export class BasketComponent implements OnInit {
       this.basketService.createOrUpdateBasket(basket);
   };
 
-  no_backspaces = (event: any) => {
-    if (event.keyCode == 8) event.preventDefault();
-  };
 }

@@ -37,9 +37,9 @@
                                     <!-- example of two way binding with event that persists the change (needs FormsModule in the current component's module)-->
                                     <div class=" mb-0 mx-auto" style="max-width: 5rem; ">
                                         <input [ngModel]="item.quantity"
-                                            (ngModelChange)="updateQuantity($event, item.id)"
-                                            (onkeydown)="no_backspaces($event)" type="number" class="form-control"
-                                            name="cartQty1" id="cartQty1" value="{{item.quantity}}">
+                                            (ngModelChange)="updateQuantity($event, item.id)" type="number"
+                                            class="form-control" name="cartQty1" id="cartQty1"
+                                            value="{{item.quantity}}">
                                         <!-- <button></button> -->
                                     </div>
                                     <!-- end example of two way binding with event that persists the change -->
