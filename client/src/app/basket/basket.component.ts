@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { takeLast } from 'rxjs/operators';
-import { Basket, IBasket, IBasketItem } from '../shared/model/basket';
+import { IBasket, IBasketItem } from '../shared/model/basket';
 import { BasketService } from './basket.service';
 
 @Component({
@@ -13,7 +11,7 @@ import { BasketService } from './basket.service';
 export class BasketComponent implements OnInit {
   basket$: Observable<IBasket>;
   @Input('ngModel') quantity: number;
-  constructor(private basketService: BasketService, private toastr: ToastrService) { }
+  constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;

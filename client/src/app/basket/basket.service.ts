@@ -75,6 +75,7 @@ export class BasketService {
 
 
 
+
   //#region private methods
   private calculateTotals = () => {
     const basket = this.getCurrentBasketValue();

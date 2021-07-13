@@ -5,6 +5,7 @@ import { ProductComponent } from './product/product.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ShopRoutingModule } from './shop-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { ShopRoutingModule } from './shop-routing.module';
   imports: [
     CommonModule,
     SharedModule,
-    ShopRoutingModule 
+    ShopRoutingModule,
+    FormsModule
   ],
   exports: []
 })

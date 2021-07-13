@@ -5,7 +5,7 @@
         </div>
         <div class="d-flex align-items-center col-md-6 col-xl-5 py-3">
             <div>
-               
+
                 <h1 class="mb-4">{{product.name}}</h1>
                 <p>by <span>{{product.author}}</span></p>
                 <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
@@ -15,18 +15,26 @@
                             <del>{{product.price + product.price/5 | currency}}</del>
                         </li>
                     </ul>
-                    
+
                 </div>
                 <p class="mb-4 text-muted">{{product.description}}</p>
 
                 <ul class="list-inline">
                     <li class=" detail-option list-inline-item mb-5">
                         <label class="detail-option-heading fw-bold">Items</label>
-                        <input class="form-control detail-quantity" name="items" type="number" value="1">
+
+                        <!-- example of two way binding with event that persists the change (needs FormsModule in the current component's module)-->
+                        <div class=" mb-0 mx-auto" style="max-width: 5rem; ">
+                            <input [ngModel]="quantity" (ngModelChange)="updateQuantity($event)" type="number"
+                                class="form-control" name="cartQty1" id="cartQty1" value="{{quantity}}">
+
+                        </div>
+                        <!-- end example of two way binding with event that persists the change -->
                     </li>
                     <li class="list-inline-item">
-                        <button class="btn btn-dark btn-lg mb-1" type="submit"> <i
-                                class="fa fa-shopping-cart mr-2"></i>Add to Cart</button>
+                        <button class="btn btn-dark btn-lg mb-1" type="submit"
+                            (click)="addItemToBasket(product, quantity)"> <i class="fa fa-shopping-cart mr-2"></i>Add to
+                            Cart</button>
                     </li>
                 </ul>
 
@@ -38,21 +46,21 @@
 
 
 
-    
+
     <!-- <section class="my-5">
         <div class="container">
             <header class="text-center">
                 <h6 class="text-uppercase mb-5">You might also like</h6>
             </header>
             <div class="row" >
-               
+
                 <div class="col-lg-3 col-md-4 col-6" *ngFor="let item of selection">
                     <a class="text-dark" routerLink="/shop/{{item.id}}" style="text-decoration: none;">
                         <div class="product-image">
                             <img class="img-fluid" style="max-height: 150px;"
                                 src="{{item.pictureUrl}}"
                                 alt="product">
-                    
+
                         </div>
                         <div class="py-2">
                             <p class="text-muted text-sm mb-1">{{item.author}}</p>
@@ -61,7 +69,7 @@
                         </div>
                     </a>
                 </div>
-              
+
 
 
             </div>
@@ -93,8 +101,8 @@
 
 
 
-<!-- <div class="row"> -->
-<!-- <div class="col-sm-6 col-lg-12 detail-option mb-3">
+    <!-- <div class="row"> -->
+    <!-- <div class="col-sm-6 col-lg-12 detail-option mb-3">
                             <h6 class="detail-option-heading">Size <span>(required)</span></h6>
                             <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_0"> Small
                                 <input class="input-invisible" type="radio" name="size" value="value_0" id="size_0"
@@ -122,7 +130,7 @@
                                     id="material_1" required="">
                             </label>
                         </div> -->
-<!-- <div class="col-12 detail-option mb-3">
+    <!-- <div class="col-12 detail-option mb-3">
                             <h6 class="detail-option-heading">Colour <span>(required)</span></h6>
                             <ul class="list-inline mb-0 colours-wrapper">
                                 <li class="list-inline-item">
@@ -152,8 +160,8 @@
                             </ul>
                         </div> -->
 
-<!-- </div> -->
-<!-- <ul class="list-inline">
+    <!-- </div> -->
+    <!-- <ul class="list-inline">
                     <li class="list-inline-item">
                         <button class="btn btn-dark btn-lg mb-1" type="submit"> <i
                                 class="fa fa-shopping-cart me-2"></i>Add to Cart</button>

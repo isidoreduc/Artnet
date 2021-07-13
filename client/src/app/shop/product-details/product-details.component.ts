@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { BasketService } from 'src/app/basket/basket.service';
 import { IProduct } from 'src/app/shared/model/product';
-import { ShopParams } from 'src/app/shared/model/shop-params';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ShopService } from '../shop.service';
 
@@ -12,11 +13,13 @@ import { ShopService } from '../shop.service';
 })
 export class ProductDetailsComponent implements OnInit {
   product: IProduct;
+  quantity = 1;
 
 
-  constructor(private shopService: ShopService, private routeActive: ActivatedRoute, private breadcrumbService: BreadcrumbService) {
-    this.breadcrumbService.set("@productDetails"," "); // space, not empty string - show nothing under spinner
-   }
+  constructor(private shopService: ShopService, private routeActive: ActivatedRoute,
+    private breadcrumbService: BreadcrumbService, private basketService: BasketService, private toastr: ToastrService) {
+    this.breadcrumbService.set("@productDetails", " "); // space, not empty string - show nothing under spinner
+  }
 
   ngOnInit(): void {
     this.getProductById();
@@ -27,4 +30,11 @@ export class ProductDetailsComponent implements OnInit {
       this.product = p;
       this.breadcrumbService.set("@productDetails", this.product.name);
     }, err => console.log(err));
+
+  addItemToBasket = (item: IProduct, quantity: number) => {
+    this.basketService.addItemToBasket(item, quantity);
+    this.toastr.success(`Added ${this.quantity} copies to the basket`, "Success!");
+  };
+
+  updateQuantity = (event: number) => this.quantity = event;
 }
