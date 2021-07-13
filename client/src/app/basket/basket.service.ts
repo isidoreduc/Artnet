@@ -37,7 +37,10 @@ export class BasketService {
       localStorage.removeItem("basket_id");
     }, err => console.log(err));
 
+
   getCurrentBasketValue = () => this.basketSource.value;
+
+
 
   addItemToBasket = (item: IProduct, quantity = 1) => {
     const itemToAdd: IBasketItem = this.mapProductToBasketItem(item, quantity);
@@ -52,14 +55,13 @@ export class BasketService {
     this.createOrUpdateBasket(basket);
   };
 
+
+
   deleteItemFromBasket = (item: IBasketItem) => {
     let basket = this.basketSource.value;
     basket.items = basket.items.some(i => i.id === item.id) ? basket.items.filter(i => i.id !== item.id) : basket.items;
-    if (basket.items.length > 0) {
+    if (basket.items.length > 0)
       this.createOrUpdateBasket(basket);
-      // this.router.navigateByUrl("/");
-      // window.onbeforeunload = () => "";
-    }
     else {
       this.deleteBasket(basket.id);
       this.router.navigateByUrl("/");
@@ -68,7 +70,7 @@ export class BasketService {
 
 
 
-
+  //#region private methods
   private mapProductToBasketItem = (item: IProduct, quantity: number): IBasketItem => {
     const mapped = {
       id: item.id,
@@ -88,4 +90,6 @@ export class BasketService {
     localStorage.setItem("basket_id", basket.id);
     return basket;
   };
+
+  //#endregion
 }
