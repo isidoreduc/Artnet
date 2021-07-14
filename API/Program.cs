@@ -31,6 +31,7 @@ namespace API
                 {
                     await storeContext.Database.MigrateAsync();
                     await StoreContextSeed.SeedAsync(storeContext, loggerFactory);
+                    await identityContext.Database.MigrateAsync();
                     await IdentitySeedData.SeedUsersAsync(manager);
                 }
                 catch (System.Exception ex)
