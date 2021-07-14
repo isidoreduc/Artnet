@@ -4,6 +4,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PaginationHeaderComponent } from './model/components/pagination-header/pagination-header.component';
 import { PaginationComponent } from './model/components/pagination/pagination.component';
 import { OrderTotalsComponent } from './model/components/order-totals/order-totals.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,7 +16,8 @@ import { OrderTotalsComponent } from './model/components/order-totals/order-tota
   ],
   imports: [
     CommonModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    RouterModule
   ],
   exports: [PaginationModule, PaginationComponent, PaginationHeaderComponent, OrderTotalsComponent]
 })
