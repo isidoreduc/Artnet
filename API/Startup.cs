@@ -2,6 +2,7 @@ using API.ExtensionMethods;
 using API.Helpers;
 using API.Middleware;
 using Infrastructure.Data;
+using Infrastructure.Data.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,19 +27,25 @@ namespace API
             services.AddControllers();
 
             services.AddSwaggerService(); // extension method
-            
+
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlite(_configuration["ConnectionStrings:SqliteConnection"]));
 
-            services.AddSingleton<IConnectionMultiplexer>(c => {
+            services.AddDbContext<IdentityContext>(options =>
+                options.UseSqlite(_configuration["ConnectionStrings:SqliteIdentityConnection"]));
+
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
                 var configuration = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"));
                 return ConnectionMultiplexer.Connect(configuration);
             });
-            
+
+            services.AddIdentityServices(); // extension method
+
 
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddCors(opt => opt.AddPolicy("AngularPolicy", policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")));
-            services.AddOurServices(); // extension method 
+            services.AddOurServices(); // extension method
 
         }
 

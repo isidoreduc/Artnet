@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Infrastructure.Data.MigrationsB
+namespace Infrastructure.Data.Migrations
 {
     public partial class ChangedBasket1 : Migration
     {

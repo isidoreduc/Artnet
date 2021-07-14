@@ -1,7 +1,10 @@
 using System.Linq;
 using API.ErrorHandling;
+using Core.Entities.Identity;
 using Core.Interfaces;
+using Infrastructure.Data.Identity;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,9 +17,9 @@ namespace API.ExtensionMethods
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IBasketRepository, BasketRepository>();
-            services.Configure<ApiBehaviorOptions>(options => 
+            services.Configure<ApiBehaviorOptions>(options =>
             {
-                options.InvalidModelStateResponseFactory = actionContext => 
+                options.InvalidModelStateResponseFactory = actionContext =>
                 {
                     var errors = actionContext.ModelState
                         .Where(e => e.Value.Errors.Count > 0)
@@ -31,6 +34,18 @@ namespace API.ExtensionMethods
                     return new BadRequestObjectResult(errorResponse);
                 };
             });
+            return services;
+        }
+
+        public static IServiceCollection AddIdentityServices(this IServiceCollection services)
+        {
+            var builder = services.AddIdentityCore<User>();
+            builder = new IdentityBuilder(builder.UserType, builder.Services);
+            builder.AddEntityFrameworkStores<IdentityContext>();
+            builder.AddSignInManager<SignInManager<User>>();
+
+            services.AddAuthentication();
+
             return services;
         }
     }
