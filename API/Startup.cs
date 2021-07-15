@@ -40,7 +40,7 @@ namespace API
                 return ConnectionMultiplexer.Connect(configuration);
             });
 
-            services.AddIdentityServices(); // extension method
+            services.AddIdentityServices(_configuration); // extension method
 
 
             services.AddAutoMapper(typeof(MappingProfiles));
@@ -66,6 +66,7 @@ namespace API
 
             app.UseCors("AngularPolicy");
 
+            app.UseAuthentication(); // always before authorization
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
