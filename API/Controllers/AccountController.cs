@@ -1,9 +1,14 @@
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.ErrorHandling;
+using AutoMapper;
 using Core.Entities.Identity;
+using Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -11,13 +16,57 @@ namespace API.Controllers
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly ITokenService _tokenService;
+        private readonly IMapper _mapper;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ITokenService tokenService, IMapper mapper)
         {
+            _mapper = mapper;
+            _tokenService = tokenService;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        [HttpPost]
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<UserDto>> GetActiveUser()
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.FindByEmailAsync(email);
+            return new UserDto
+            {
+                Email = user.Email,
+                UserName = user.Name,
+                Token = _tokenService.CreateToken(user)
+            };
+        }
+
+        [HttpGet("emailexists")]
+        public async Task<ActionResult<bool>> CheckEmailExistsAsync([FromQuery] string email) =>
+            await _userManager.FindByEmailAsync(email) != null;
+
+        [Authorize]
+        [HttpGet("address")]
+        public async Task<ActionResult<AddressDto>> GetuserAddressAsync()
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.Users.Include(x => x.Address).SingleOrDefaultAsync(x => x.Email == email);
+            return Ok(_mapper.Map<Address, AddressDto>(user.Address));
+        }
+
+        [Authorize]
+        [HttpPost("address")]
+        public async Task<ActionResult<AddressDto>> UpdateUserAddressAsync(AddressDto addressDto)
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.Users.Include(x => x.Address).SingleOrDefaultAsync(x => x.Email == email);
+            user.Address = _mapper.Map<AddressDto, Address>(addressDto);
+            var result = await _userManager.UpdateAsync(user);
+            return result.Succeeded ? Ok(_mapper.Map<Address, AddressDto>(user.Address)) : BadRequest("Problems updating user");
+        }
+
+
+        // [Authorize]
+        [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
@@ -28,7 +77,7 @@ namespace API.Controllers
             {
                 Email = user.Email,
                 UserName = user.Name,
-                Token = "a token"
+                Token = _tokenService.CreateToken(user)
             };
         }
 
@@ -49,7 +98,7 @@ namespace API.Controllers
             {
                 Email = user.Email,
                 UserName = user.Name,
-                Token = "a token"
+                Token = _tokenService.CreateToken(user)
             };
         }
     }
