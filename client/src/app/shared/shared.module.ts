@@ -5,6 +5,7 @@ import { PaginationHeaderComponent } from './model/components/pagination-header/
 import { PaginationComponent } from './model/components/pagination/pagination.component';
 import { OrderTotalsComponent } from './model/components/order-totals/order-totals.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,8 +18,14 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
-  exports: [PaginationModule, PaginationComponent, PaginationHeaderComponent, OrderTotalsComponent]
+  exports: [
+    PaginationModule,
+    PaginationComponent,
+    PaginationHeaderComponent,
+    OrderTotalsComponent,
+    ReactiveFormsModule]
 })
 export class SharedModule { }

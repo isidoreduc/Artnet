@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { BreadcrumbService } from 'xng-breadcrumb';
 
 @Component({
@@ -7,11 +8,9 @@ import { BreadcrumbService } from 'xng-breadcrumb';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  date: Date;
+  date = environment.date;
   constructor(private breadcrumbService: BreadcrumbService) { }
 
-  ngOnInit(): void {
-    this.date = new Date();
-  }
+  ngOnInit(): void { }
 
 }
