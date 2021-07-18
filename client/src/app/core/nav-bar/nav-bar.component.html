@@ -25,8 +25,8 @@
                 <div *ngIf="(basket$ | async)?.items.length > 0" class="cart-no">
                     {{(basket$ | async).items.length }}</div>
             </div>
-            <a class="mx-3" href="#">Login</a>
-            <a class="mx-3" href="#">Sign up</a>
+            <a class="mx-3" routerLink="/account/login">Login</a>
+            <a class="mx-3" routerLink="/account/register">Sign up</a>
         </div>
     </div>
 </nav>
