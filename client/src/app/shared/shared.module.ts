@@ -6,6 +6,7 @@ import { PaginationComponent } from './model/components/pagination/pagination.co
 import { OrderTotalsComponent } from './model/components/order-totals/order-totals.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
+    BsDropdownModule.forRoot(),
     RouterModule,
     ReactiveFormsModule
   ],
@@ -26,6 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     PaginationComponent,
     PaginationHeaderComponent,
     OrderTotalsComponent,
-    ReactiveFormsModule]
+    ReactiveFormsModule,
+    BsDropdownModule
+
+  ]
 })
 export class SharedModule { }

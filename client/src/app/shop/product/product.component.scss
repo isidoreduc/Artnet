@@ -2,6 +2,14 @@
 
 .text-uppercase {
     color: $good-night-gray;
+
+    a {
+        text-decoration: none;
+        color: $good-night-gray;
+        &:hover {
+            color: $minty-green;
+        }
+    }
 }
 
 .my-card {
@@ -21,12 +29,8 @@
         &:hover {
             background-color: $good-night-gray;
         }
-
     }
     .fa-shopping-cart {
         background-color: white;
     }
 }
-
-
-

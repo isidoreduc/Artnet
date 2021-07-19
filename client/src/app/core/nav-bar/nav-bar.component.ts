@@ -31,4 +31,7 @@ export class NavBarComponent implements OnInit {
     else this.router.navigateByUrl('/basket');
   };
 
+
+  logout = () => this.accountService.logout();
+
 }

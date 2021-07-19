@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -42,6 +42,18 @@ export class AccountService {
     this.router.navigateByUrl("/");
   };
 
+
+  loadCurrentUser = (token: string) => {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.baseUrl + "account", { headers }).pipe(map((user: IUser) => {
+      localStorage.setItem("token", user.token);
+      this.userSource.next(user);
+    }));
+  };
+
+
+  loadUserValue = () => this.userSource.value;
 
   emailExistsCheck = (email: string) => this.http.get(this.baseUrl + "account/emailexists?email=" + email);
 }

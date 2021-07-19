@@ -9,20 +9,27 @@ import { SectionBreadcrumbComponent } from './section-breadcrumb/section-breadcr
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { ToastrModule } from 'ngx-toastr';
 
+import { SharedModule } from '../shared/shared.module';
+
+
 
 
 @NgModule({
   declarations: [NavBarComponent, TestErrorComponent, NotFoundComponent, ServerErrorComponent, SectionBreadcrumbComponent],
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterModule,
     BreadcrumbModule,
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right",
       preventDuplicates: true
     }),
+    SharedModule
 
   ],
-  exports: [NavBarComponent, SectionBreadcrumbComponent]
+  exports: [
+    NavBarComponent,
+    SectionBreadcrumbComponent,
+  ]
 })
 export class CoreModule { }
