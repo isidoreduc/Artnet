@@ -7,6 +7,7 @@ import { OrderTotalsComponent } from './model/components/order-totals/order-tota
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TextInputComponent } from './model/components/text-input/text-input.component';
 
 
 
@@ -14,7 +15,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
   declarations: [
     PaginationHeaderComponent,
     PaginationComponent,
-    OrderTotalsComponent
+    OrderTotalsComponent,
+    TextInputComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     PaginationHeaderComponent,
     OrderTotalsComponent,
     ReactiveFormsModule,
-    BsDropdownModule
+    BsDropdownModule,
+    TextInputComponent
 
   ]
 })
