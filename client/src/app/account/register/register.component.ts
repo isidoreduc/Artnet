@@ -21,14 +21,18 @@ export class RegisterComponent implements OnInit {
 
   initializeFormGroup = () => {
     this.registerForm = new FormGroup({
+      name: new FormControl("", [Validators.required, Validators.minLength(4)]),
       email: new FormControl("", [Validators.required,
         Validators.pattern("^([a-zA-Z0-9]+(?:[.-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:[.-]?[a-zA-Z0-9]+)*\\.[a-zA-Z]{2,7})$")]),
-      password: new FormControl("", [Validators.required, Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W_]).{6,})")])
+      password: new FormControl("", [Validators.required,
+        Validators.pattern("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W_]).{6,})")])
     });
   };
 
-  onSubmit = () => this.accountService.register(this.registerForm.value).subscribe(() =>
-    this.router.navigateByUrl("/account/login"), err => console.log(err)
+  onSubmit = () => this.accountService.register(this.registerForm.value)
+    .subscribe(() =>
+      this.router.navigateByUrl("/shop"),
+      err => console.log(err)
   );
 
 }

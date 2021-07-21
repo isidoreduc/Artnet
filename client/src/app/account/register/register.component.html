@@ -15,9 +15,13 @@
             </div>
 
             <app-text-input
+                formControlName="name"
+                [label]="'User name'"
+            ></app-text-input>
+
+            <app-text-input
                 formControlName="email"
                 [label]="'Email address'"
-
             ></app-text-input>
 
             <app-text-input
@@ -33,12 +37,12 @@
                 type="submit"
                 [disabled]="registerForm.invalid"
             >
-                Sign in
+                Sign up
             </button>
             <p class="mt-5 mb-3 text-muted text-center">© 2017-{{date}}</p>
 
         </div>
-        <div>
+        <!-- <div>
             <p>Form valid: {{registerForm.valid}}</p>
             <p>Form touched: {{registerForm.touched}}</p>
             <p>Form status: {{registerForm.status}}</p>
@@ -48,7 +52,7 @@
             <p>Email dirty : {{registerForm.get("email").dirty}}</p>
             <p>Email touched : {{registerForm.get("email").touched}}</p>
 
-        </div>
+        </div> -->
     </form>
 
 

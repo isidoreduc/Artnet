@@ -4,3 +4,4 @@ appsettings.json
 *.db
 artnet static files
 *rdb
+*.db-*
