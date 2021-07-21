@@ -32,6 +32,12 @@
 
             ></app-text-input>
 
+<!-- server errors - just used for email in use check, because for others button is disabled if form is not valid -->
+            <ul class="text-danger" *ngIf="serverErrors" >
+                <li class="list-unstyled" *ngFor="let item of serverErrors">{{item}}</li>
+            </ul>
+<!-- end server errors -->
+
             <button
                 [ngClass]="registerForm.invalid ? 'btn-lg btn-block disabled' : 'btn btn-lg btn-block enabled'"
                 type="submit"
