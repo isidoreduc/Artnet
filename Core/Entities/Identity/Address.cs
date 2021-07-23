@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Entities.Identity
 {
-    public class Address
+    public class Address // value object, part of the User table
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
