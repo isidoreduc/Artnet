@@ -3,6 +3,7 @@ using System.Text;
 using API.ErrorHandling;
 using Core.Entities.Identity;
 using Core.Interfaces;
+using Infrastructure.Data;
 using Infrastructure.Data.Identity;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
@@ -21,6 +22,7 @@ namespace API.ExtensionMethods
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrderService, OrderService>();
