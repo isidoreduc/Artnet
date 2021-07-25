@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Reflection;
 using Core.Entities;
@@ -34,6 +35,11 @@ namespace Infrastructure.Data
                     foreach (var dec in decimals)
                     {
                         modelBuilder.Entity(entityType.Name).Property(dec.Name).HasConversion<double>();
+                    }
+                    var dateTimeOffset = entityType.ClrType.GetProperties().Where(t => t.PropertyType == typeof(DateTimeOffset));
+                    foreach (var dec in dateTimeOffset)
+                    {
+                        modelBuilder.Entity(entityType.Name).Property(dec.Name).HasConversion<string>();
                     }
                 }
             }

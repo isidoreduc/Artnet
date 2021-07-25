@@ -5,6 +5,7 @@ using Core.Entities;
 using Core.Entities.Identity;
 using Core.Entities.Order;
 using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Services
@@ -62,14 +63,16 @@ namespace Infrastructure.Services
       return order;
     }
 
-    public async Task<Order> GetOrderByIdAsync(int id, string shopperEmail) =>
-      await _unitOfWork.Repository<Order>().GetById(id);
+    public async Task<Order> GetOrderByIdAsync(int id, string shopperEmail)
+    {
+      var spec = new OrdersWithItemsByDateSpecification(id, shopperEmail);
+      return await _unitOfWork.Repository<Order>().GetEntityWithSpecification(spec);
+    }
 
     public async Task<IEnumerable<Order>> GetOrdersForUserAsync(string shopperEmail)
     {
-      // var user = await _userManager.FindByEmailAsync(shopperEmail);
-      // return await _unitOfWork.Repository<Order>().GetById(user.Id);;
-      return null;
+      var spec = new OrdersWithItemsByDateSpecification(shopperEmail);
+      return await _unitOfWork.Repository<Order>().GetAllWithSpecification(spec);
     }
   }
 }
