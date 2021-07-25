@@ -24,22 +24,36 @@ namespace API.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
-    {
-      var order = await _orderService.GetOrdersForUserAsync(User.GetUserEmail());
-      return order != null ? Ok(order) : NotFound(new ApiException(404));
-    }
+    public async Task<ActionResult<IEnumerable<OrderForFrontendDto>>> GetOrders() =>
+      Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderForFrontendDto>>(
+        await _orderService.GetOrdersForUserAsync(
+          User.GetUserEmail())));
+
 
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Order>> GetOrderById(int id) =>
-      Ok(await _orderService.GetOrderByIdAsync(id, User.GetUserEmail()));
+    public async Task<ActionResult<OrderForFrontendDto>> GetOrderById(int id)
+    {
+      var order = await _orderService.GetOrderByIdAsync(id, User.GetUserEmail());
+      if(order == null) return NotFound(new ApiException(404));
+      var mappedOrder = _mapper.Map<Order, OrderForFrontendDto>(order);
+      return Ok(mappedOrder);
+    }
+
+
+
+
+    [HttpGet("deliveryMethods")]
+    public async Task<ActionResult<IEnumerable<DeliveryMethod>>> GetDeliveryMethods() =>
+      Ok(await _orderService.GetDeliveryMethodsAsync());
+
+
 
     [HttpPost]
     public async Task<ActionResult<Order>> CreateOrder(OrderDto orderDto)
     {
-      var order = await _orderService.CreateOrderAsync(User.GetUserEmail(), orderDto.DeliveryMethodId, orderDto.BasketId,
-        _mapper.Map<AddressDto, Core.Entities.Order.Address>(orderDto.DeliveryAddress));
+      var order = await _orderService.CreateOrderAsync(User.GetUserEmail(), orderDto.DeliveryMethodId,
+        orderDto.BasketId, _mapper.Map<AddressDto, DeliveryAddress>(orderDto.DeliveryAddress));
       return order != null ? Ok(order) : BadRequest(new ApiException(400));
     }
   }

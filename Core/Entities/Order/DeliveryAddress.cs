@@ -1,12 +1,12 @@
 namespace Core.Entities.Order
 {
-    public class Address
+    public class DeliveryAddress
     {
-        public Address()
+        public DeliveryAddress()
         {
         }
 
-        public Address(string firstName, string lastName, string street, string city, string country, string zipCode)
+        public DeliveryAddress(string firstName, string lastName, string street, string city, string country, string zipCode)
         {
             FirstName = firstName;
             LastName = lastName;

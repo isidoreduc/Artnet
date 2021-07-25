@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Data.Migrations
 {
@@ -30,7 +29,7 @@ namespace Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ShopperEmail = table.Column<string>(type: "TEXT", nullable: true),
-                    OrderDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    OrderDate = table.Column<string>(type: "TEXT", nullable: false),
                     DeliveryAddress_FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     DeliveryAddress_LastName = table.Column<string>(type: "TEXT", nullable: true),
                     DeliveryAddress_Street = table.Column<string>(type: "TEXT", nullable: true),

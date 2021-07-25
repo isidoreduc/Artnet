@@ -9,7 +9,7 @@ namespace Core.Entities.Order
     {
     }
 
-    public Order(IReadOnlyList<OrderItem> orderItems, string shopperEmail, Address deliveryAddress, DeliveryMethod deliveryMethod, decimal subtotal)
+    public Order(IReadOnlyList<OrderItem> orderItems, string shopperEmail, DeliveryAddress deliveryAddress, DeliveryMethod deliveryMethod, decimal subtotal)
         {
             OrderItems = orderItems;
             ShopperEmail = shopperEmail;
@@ -20,7 +20,7 @@ namespace Core.Entities.Order
 
         public string ShopperEmail { get; set; }
         public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
-        public Address DeliveryAddress { get; set; }
+        public DeliveryAddress DeliveryAddress { get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
         public decimal Subtotal { get; set; }

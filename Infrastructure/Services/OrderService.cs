@@ -26,7 +26,7 @@ namespace Infrastructure.Services
     public async Task<IEnumerable<DeliveryMethod>> GetDeliveryMethodsAsync() =>
       await _unitOfWork.Repository<DeliveryMethod>().GetAllAsync();
 
-    public async Task<Order> CreateOrderAsync(string shopperEmail, int deliveryMethodId, string basketId, Core.Entities.Order.Address deliveryAddress)
+    public async Task<Order> CreateOrderAsync(string shopperEmail, int deliveryMethodId, string basketId,     DeliveryAddress deliveryAddress)
     {
       // get basket from repo
       var basket = await _basketRepo.GetBasketAsync(basketId);

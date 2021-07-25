@@ -5,17 +5,15 @@ using Microsoft.Extensions.Configuration;
 
 namespace API.Helpers
 {
-    public class ProductImageUrlResolver : IValueResolver<Product, ProductToReturnDto, string>
+  public class ProductImageUrlResolver : IValueResolver<Product, ProductToReturnDto, string>
+  {
+    private readonly IConfiguration _config;
+    public ProductImageUrlResolver(IConfiguration config) // need IConfiguration injected to get the url from appsettings.json
     {
-        private readonly IConfiguration _config;
-        public ProductImageUrlResolver(IConfiguration config) // need IConfiguration injected to get the url from appsettings.json
-        {
-            _config = config;
-        }
-
-        public string Resolve(Product source, ProductToReturnDto destination, string destMember, ResolutionContext context)
-        {
-            return _config["ApiUrl"] + source.PictureUrl ?? null;
-        }
+      _config = config;
     }
+
+    public string Resolve(Product source, ProductToReturnDto destination, string destMember, ResolutionContext context) => _config["ApiUrl"] + source.PictureUrl ?? null;
+
+  }
 }
