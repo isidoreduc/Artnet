@@ -1,0 +1,48 @@
+<div class="table-responsive " *ngIf="basket$ | async as basket">
+  <table class="table table-borderless ">
+    <thead class="border-1 bg-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Qty</th>
+        <th scope="col" class="text-right">Total</th>
+        <th scope="col" *ngIf="!isSummary">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of basket.items; let i=index" class="border-bottom">
+        <th scope="row">{{i+1}}</th>
+        <td><a routerLink="/shop/{{item.id}}"><img src="{{item.pictureUrl}}" class="img-fluid" width="50"
+              alt="product"></a></td>
+        <td><a routerLink="/shop/{{item.id}}" style="text-decoration: none;">
+            <h6 class="text-uppercase product-title">{{item.name}}</h6>
+            <span class="text-muted font-italic">by {{item.author}}</span>
+          </a></td>
+        <td>{{item.price | currency}}</td>
+        <td *ngIf="!isSummary">
+          <!-- example of two way binding with event that persists the change (needs FormsModule in the current component's module)-->
+          <div class=" mb-0 mx-auto" style="max-width: 5rem;">
+            <input [ngModel]="item.quantity" (ngModelChange)="updateQuantity({quantity:$event, id:item.id})" type="number"
+              class="form-control text-center" name="cartQty1" id="cartQty1" value="{{item.quantity}}">
+          </div>
+          <!-- end example of two way binding with event that persists the change -->
+
+        </td>
+        <td *ngIf="isSummary">
+          <div class=" mb-0 mx-auto" style="max-width: 5rem;">
+            {{item.quantity}}
+          </div>
+        </td>
+
+        <td class="text-right">{{item.quantity * item.price | currency}}</td>
+        <td *ngIf="!isSummary">
+          <div href="#" class=" mx-auto">
+            <i class="fa fa-trash fa-lg" (click)="deleteItem(item)"></i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

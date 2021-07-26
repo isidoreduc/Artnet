@@ -10,7 +10,6 @@ import { BasketService } from './basket.service';
 })
 export class BasketComponent implements OnInit {
   basket$: Observable<IBasket>;
-  @Input('ngModel') quantity: number;
   constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
@@ -19,11 +18,11 @@ export class BasketComponent implements OnInit {
 
   deleteItem = (item: IBasketItem) => this.basketService.deleteItemFromBasket(item);
 
-  updateQuantity = (event: number, basketItemId: number) => {
-    event = event < 0 ? 1 : event;
+  updateQuantity = (data: any) => {
+    data.quantity = data.quantity < 0 ? 1 : data.quantity;
     let basket = this.basketService.getCurrentBasketValue();
-    let basketItem = basket.items.filter(i => i.id === basketItemId)[0];
-    basketItem.quantity = event;
+    let basketItem = basket.items.filter(i => i.id === data.id)[0];
+    basketItem.quantity = data.quantity;
     if (basketItem.quantity === 0)
       this.basketService.deleteItemFromBasket(basketItem);
     else

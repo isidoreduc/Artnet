@@ -1,24 +1,24 @@
 @import "../../styles.scss";
 
-.table td,
-.table th {
-    vertical-align: middle;
-    text-align: center;
-}
+// .table td,
+// .table th {
+//     vertical-align: middle;
+//     text-align: center;
+// }
 
-.product-title {
-    color: $minty-green;
-}
+// .product-title {
+//     color: $minty-green;
+// }
 
-i {
-    cursor: pointer;
-    color: $good-night-gray;
+// i {
+//     cursor: pointer;
+//     color: $good-night-gray;
 
-    &:hover {
-        transform: scale(1.1);
-        color: $minty-green;
-    }
-}
+//     &:hover {
+//         transform: scale(1.1);
+//         color: $minty-green;
+//     }
+// }
 
 .buttony {
     background-color: white;

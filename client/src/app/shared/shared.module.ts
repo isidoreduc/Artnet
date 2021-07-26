@@ -5,11 +5,12 @@ import { PaginationHeaderComponent } from './model/components/pagination-header/
 import { PaginationComponent } from './model/components/pagination/pagination.component';
 import { OrderTotalsComponent } from './model/components/order-totals/order-totals.component';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TextInputComponent } from './model/components/text-input/text-input.component';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import { StepperComponent } from './model/components/stepper/stepper.component';
+import { BasketSummaryComponent } from './model/components/basket-summary/basket-summary.component';
 
 
 
@@ -19,10 +20,12 @@ import { StepperComponent } from './model/components/stepper/stepper.component';
     PaginationComponent,
     OrderTotalsComponent,
     TextInputComponent,
-    StepperComponent
+    StepperComponent,
+    BasketSummaryComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
     RouterModule,
@@ -30,6 +33,7 @@ import { StepperComponent } from './model/components/stepper/stepper.component';
     CdkStepperModule
   ],
   exports: [
+    FormsModule,
     PaginationModule,
     PaginationComponent,
     PaginationHeaderComponent,
@@ -38,7 +42,8 @@ import { StepperComponent } from './model/components/stepper/stepper.component';
     BsDropdownModule,
     TextInputComponent,
     CdkStepperModule,
-    StepperComponent
+    StepperComponent,
+    BasketSummaryComponent
 
   ]
 })
