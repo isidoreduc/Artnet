@@ -1,6 +1,6 @@
 <div class="table-responsive " *ngIf="basket$ | async as basket">
   <table class="table table-borderless ">
-    <thead class="border-1 bg-light">
+    <thead class="border-1" [class.bg-light]="!isSummary">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Photo</th>
