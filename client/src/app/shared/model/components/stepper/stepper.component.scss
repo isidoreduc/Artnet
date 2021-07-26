@@ -1,0 +1,33 @@
+@import "../../../../../styles.scss";
+
+.example-container {
+  border: none;
+  // padding: 10px;
+  // margin: 10px;
+}
+
+// .example-step-navigation-bar {
+//   display: flex;
+//   justify-content: flex-;
+//   margin-top: 10px;
+// }
+
+.example-step {
+  background: #F8F9FA;
+  border: none;
+  color: black;
+  font-weight: bold;
+}
+
+.example-step.example-active {
+  background: $minty-green;
+  border: none;
+  font-weight: bold;
+  color:white;
+}
+
+.example-nav-button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+}

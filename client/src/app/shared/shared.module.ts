@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TextInputComponent } from './model/components/text-input/text-input.component';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import { StepperComponent } from './model/components/stepper/stepper.component';
 
 
 
@@ -16,14 +18,16 @@ import { TextInputComponent } from './model/components/text-input/text-input.com
     PaginationHeaderComponent,
     PaginationComponent,
     OrderTotalsComponent,
-    TextInputComponent
+    TextInputComponent,
+    StepperComponent
   ],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CdkStepperModule
   ],
   exports: [
     PaginationModule,
@@ -32,7 +36,9 @@ import { TextInputComponent } from './model/components/text-input/text-input.com
     OrderTotalsComponent,
     ReactiveFormsModule,
     BsDropdownModule,
-    TextInputComponent
+    TextInputComponent,
+    CdkStepperModule,
+    StepperComponent
 
   ]
 })
