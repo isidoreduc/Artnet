@@ -1,0 +1,15 @@
+@import "../../../styles.scss";
+
+.custom-control-input:checked {
+  & ~ .custom-control-label {
+    &::before {
+      background-color: $minty-green;
+
+    }
+
+    &::after {
+      border:1px solid $minty-green;
+      box-shadow: 0 0 0 0.2rem $minty-green;
+    }
+  }
+}
