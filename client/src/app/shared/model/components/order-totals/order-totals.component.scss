@@ -1,19 +1,1 @@
-@import "../../../../../styles.scss";
 
-.buttony {
-    background-color: white;
-    color: $minty-green;
-    border: 2px solid $minty-green;
-    &:active {
-        background-color: $minty-green;
-        color: white;
-    }
-    &:hover {
-        background-color: $good-night-gray;
-        color: white;
-        &:active {
-            background-color: $minty-green;
-            color: white;
-        }
-    }
-}
