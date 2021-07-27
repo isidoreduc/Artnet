@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
+  deliveryCost: number;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -34,5 +35,7 @@ export class CheckoutComponent implements OnInit {
       })
     });
   };
+
+
 
 }
