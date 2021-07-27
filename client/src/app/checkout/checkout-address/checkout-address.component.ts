@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,30 +13,14 @@ import { IUserAddress } from 'src/app/shared/model/user';
 })
 export class CheckoutAddressComponent implements OnInit {
   @Input() checkoutForm: FormGroup;
-  navigationSubscription: Subscription;
+  @Output() updateAddressClickEvent = new EventEmitter();
 
-  constructor(private accountService: AccountService, private toastrService: ToastrService) {}
+  constructor() { }
 
-  ngOnInit(): void {
-    this.getUserAddress();
+  ngOnInit(): void { }
 
-  }
-
-  getUserAddress = () => this.accountService.getUserAddress().subscribe(
-    (a: IUserAddress) => {
-      if (a) this.checkoutForm.get("addressForm").patchValue(a);
-    }, err => console.log(err));
-
-  updateUserAddress = () => this.accountService.updateUserAddress(this.checkoutForm.get("addressForm").value)
-    .subscribe(
-      () => {
-        this.toastrService.success("User address successfully updated", "Update success");
-      },
-      err => {
-        console.log(err);
-        this.toastrService.error(err.message, "Update error");
-      }
-    );
+  updateUserAddress = (event: any) =>
+    this.updateAddressClickEvent.emit(event);
 
 
 

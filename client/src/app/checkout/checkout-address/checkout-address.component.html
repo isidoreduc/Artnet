@@ -3,7 +3,7 @@
     <h4>Delivery address</h4>
     <button
       class="btn btn-outline-dark"
-      (click)="updateUserAddress()"
+      (click)="updateUserAddress($event)"
       [disabled]="!checkoutForm.get('addressForm').dirty || checkoutForm.get('addressForm').invalid">
         Save as default address
       </button>
