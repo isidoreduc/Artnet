@@ -14,7 +14,6 @@ export class CheckoutService {
   getDeliveryMethods = () => this.http.get<IDeliveryMethod[]>(this.baseUrl + "order/deliverymethods")
     .pipe(map(methods => methods.sort((a, b) => a.price - b.price)));
 
-  createOrder = (order: IOrder) => {
-    this.http.post<IOrder>(this.baseUrl + "order", order)
-  };
+  createOrder = (order: IOrder) =>
+    this.http.post<IOrder>(this.baseUrl + "order", order);
 }

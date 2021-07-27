@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../account/account.service';
 import { BasketService } from '../basket/basket.service';
@@ -16,9 +17,11 @@ export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
   deliveryCost: number;
   deliveryMethods: IDeliveryMethod[];
+  selectedDeliveryMethod: IDeliveryMethod;
+  deliveryAddress: IUserAddress;
 
   constructor(private fb: FormBuilder, private accountService: AccountService, private toastrService: ToastrService,
-    private checkoutService: CheckoutService, private basketService: BasketService) { }
+    private checkoutService: CheckoutService, private basketService: BasketService, private router: Router) { }
 
   ngOnInit(): void {
     this.createCheckoutForm();
@@ -50,7 +53,10 @@ export class CheckoutComponent implements OnInit {
 
   getUserAddress = () => this.accountService.getUserAddress().subscribe(
     (a: IUserAddress) => {
-      if (a) this.checkoutForm.get("addressForm").patchValue(a);
+      if (a) {
+        this.checkoutForm.get("addressForm").patchValue(a);
+        this.deliveryAddress = a;
+      }
     }, err => console.log(err));
 
 
@@ -66,10 +72,28 @@ export class CheckoutComponent implements OnInit {
     );
 
 
-    getDeliveryMethods = () => this.checkoutService.getDeliveryMethods().subscribe(result =>
-      this.deliveryMethods = result, err => console.log(err) );
+  getDeliveryMethods = () => this.checkoutService.getDeliveryMethods().subscribe(result =>
+    this.deliveryMethods = result, err => console.log(err));
 
 
-    updateDeliveryCost = (event: IDeliveryMethod) =>
-      this.basketService.setShippingCost(event);
+  updateDeliveryCost = (event: IDeliveryMethod) => {
+    this.basketService.setShippingCost(event);
+    this.selectedDeliveryMethod = event;
+  };
+
+  createOrder = (event: any) => {
+    const order = {
+      basketId: localStorage.getItem("basket_id"),
+      deliveryMethodId: this.selectedDeliveryMethod.id,
+      deliveryAddress: this.deliveryAddress
+    };
+    this.checkoutService.createOrder(order).subscribe(
+      () => {
+        this.basketService.resetBasket();
+        this.router.navigateByUrl("/shop");
+        this.toastrService.success("Created order successfully", "Order submitted");
+      },
+      err => this.toastrService.error(err.message, "Order error")
+    );
+  };
 }

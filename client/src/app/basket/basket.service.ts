@@ -53,7 +53,11 @@ export class BasketService {
 
   getCurrentBasketValue = () => this.basketSource.value;
 
-
+  resetBasket = () => {
+    this.basketSource.next(null);
+    this.basketTotalsSource.next(null);
+    localStorage.removeItem("basket_id");
+  }
 
   addItemToBasket = (item: IProduct, quantity = 1) => {
     const itemToAdd: IBasketItem = this.mapProductToBasketItem(item, quantity);

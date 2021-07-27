@@ -1,4 +1,9 @@
 <footer class="my-5 d-flex justify-content-between " id="footer">
   <button class="btn btn-outline-success text-uppercase" cdkStepperPrevious><i class="fa fa-chevron-left mr-2"></i>Back to order review</button>
-  <button class="btn btn-outline-success text-uppercase" cdkStepperNext>Complete Payment<i class="fa fa-chevron-right ml-2"></i></button>
+  <button
+    class="btn btn-outline-success text-uppercase"
+    cdkStepperNext
+    (click)="createOrder($event)">
+      Complete Payment<i class="fa fa-chevron-right ml-2"></i>
+    </button>
 </footer>
