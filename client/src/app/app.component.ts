@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.loadBasket();
     this.loadUser();
-
   }
 
   loadBasket = () => {
@@ -34,5 +33,6 @@ export class AppComponent implements OnInit {
     this.accountService.loadCurrentUser(token).subscribe(() =>
       console.log(this.accountService.user$), err => console.log(err));
   };
+
 }
 
