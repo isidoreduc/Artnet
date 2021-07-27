@@ -5,7 +5,6 @@
 
 
   <header class="example-step-navigation-bar">
-    <!-- <button class="example-nav-button" cdkStepperPrevious>&larr;</button> -->
     <button
       class="example-step col-3 py-3"
       [class.example-active]="selectedIndex === i"
@@ -14,7 +13,12 @@
       >
         {{step.label | uppercase}}
     </button>
-    <!-- <button class="example-nav-button" cdkStepperNext>&rarr;</button> -->
   </header>
+
   <div [ngTemplateOutlet]="selected ? selected.content : null"></div>
+
+  <!-- <footer class="mt-5 d-flex justify-content-between align-items-end">
+    <button class="btn btn-outline-success text-uppercase" cdkStepperPrevious>Previous step</button>
+    <button class="btn btn-outline-success text-uppercase" cdkStepperNext>Next step</button>
+  </footer> -->
 </section>
