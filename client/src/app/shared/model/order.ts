@@ -14,3 +14,26 @@ export interface IOrder {
   deliveryMethodId: number;
   deliveryAddress: IUserAddress;
 }
+
+export interface IServerOrder {
+  id: number;
+  name: string;
+  shopperEmail: string;
+  orderDate: string;
+  deliveryAddress: IUserAddress;
+  deliveryMethod: string;
+  deliveryPrice: number;
+  orderItems: OrderItem[];
+  subtotal: number;
+  total: number;
+  orderStatus: string;
+}
+
+export interface OrderItem {
+  id: number;
+  name: string;
+  productPictureUrl: string;
+  price: number;
+  quantity: number;
+}
+

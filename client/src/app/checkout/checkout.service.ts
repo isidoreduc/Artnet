@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { IDeliveryMethod, IOrder} from '../shared/model/order';
+import { IDeliveryMethod, IOrder } from '../shared/model/order';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +16,6 @@ export class CheckoutService {
 
   createOrder = (order: IOrder) =>
     this.http.post<IOrder>(this.baseUrl + "order", order);
+
+
 }
