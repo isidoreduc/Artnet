@@ -30,7 +30,10 @@ namespace API.Helpers
             CreateMap<OrderItem, OrderItemDto>()
               .ForMember(destinationMember => destinationMember.Id, memberOptions => memberOptions.MapFrom(sourceMember => sourceMember.ProductItemOrdered.ProductItemId))
               .ForMember(destinationMember => destinationMember.Name, memberOptions => memberOptions.MapFrom(sourceMember => sourceMember.ProductItemOrdered.ProductName))
-              .ForMember(destinationMember => destinationMember.ProductPictureUrl, memberOptions => memberOptions.MapFrom<OrderImageUrlResolver>());
+              .ForMember(destinationMember => destinationMember.ProductPictureUrl, memberOptions => memberOptions.MapFrom<OrderImageUrlResolver>())
+              .ForMember(destinationMember => destinationMember.Type, memberOptions => memberOptions.MapFrom(sourceMember => sourceMember.ProductItemOrdered.Type))
+              .ForMember(destinationMember => destinationMember.Current, memberOptions => memberOptions.MapFrom(sourceMember => sourceMember.ProductItemOrdered.Current))
+              .ForMember(destinationMember => destinationMember.Author, memberOptions => memberOptions.MapFrom(sourceMember => sourceMember.ProductItemOrdered.Author));
             CreateMap<Order, OrderForFrontendDto>()
               .ForMember(destinationMember => destinationMember.DeliveryMethod, memberOptions => memberOptions.MapFrom(sourceMember => sourceMember.DeliveryMethod.Name))
               .ForMember(destinationMember => destinationMember.DeliveryPrice, memberOptions => memberOptions.MapFrom(sourceMember => sourceMember.DeliveryMethod.Price))

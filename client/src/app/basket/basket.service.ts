@@ -27,6 +27,8 @@ export class BasketService {
     this.calculateTotals();
   }
 
+  getBasketTotals = () => this.basketTotalsSource.value;
+
 
   getBasket = (id: string) =>
     this.http.get<IBasket>(this.baseUrl + `basket?basketId=${id}`)

@@ -2,9 +2,9 @@
 
 a {
   text-decoration: none;
-  color: black;
+  color: $minty-green;
   &:visited{
-    color: black;
+    color: $minty-green;
   }
 
 
@@ -12,8 +12,8 @@ a {
 
 .item {
   &:hover {
-    transform: scale(1.01);
-    color: $minty-green;
+    // transform: scale(1.01);
+    // color: $minty-green;
     font-weight: 600;
   }
   // .ordered{

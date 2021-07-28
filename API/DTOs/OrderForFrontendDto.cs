@@ -15,5 +15,8 @@ namespace API.DTOs
     public decimal Subtotal { get; set; }
     public decimal Total { get; set; }
     public string OrderStatus { get; set; }
+    public string Type { get; set; }
+    public string Current { get; set; }
+    public string Author { get; set; }
   }
 }

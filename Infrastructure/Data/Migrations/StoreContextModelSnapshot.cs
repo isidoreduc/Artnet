@@ -243,6 +243,12 @@ namespace Infrastructure.Data.Migrations
                             b1.Property<int>("OrderItemId")
                                 .HasColumnType("INTEGER");
 
+                            b1.Property<string>("Author")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<string>("Current")
+                                .HasColumnType("TEXT");
+
                             b1.Property<string>("PictureUrl")
                                 .HasColumnType("TEXT");
 
@@ -250,6 +256,9 @@ namespace Infrastructure.Data.Migrations
                                 .HasColumnType("INTEGER");
 
                             b1.Property<string>("ProductName")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<string>("Type")
                                 .HasColumnType("TEXT");
 
                             b1.HasKey("OrderItemId");

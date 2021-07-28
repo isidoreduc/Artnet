@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { AccountService } from '../account/account.service';
 import { BasketService } from '../basket/basket.service';
+import { IBasketTotals } from '../shared/model/basket';
 import { IDeliveryMethod } from '../shared/model/order';
 import { IUserAddress } from '../shared/model/user';
 import { CheckoutService } from './checkout.service';
@@ -19,6 +21,7 @@ export class CheckoutComponent implements OnInit {
   deliveryMethods: IDeliveryMethod[];
   selectedDeliveryMethod: IDeliveryMethod;
   deliveryAddress: IUserAddress;
+  basketTotals$: Observable<IBasketTotals>;
 
   constructor(private fb: FormBuilder, private accountService: AccountService, private toastrService: ToastrService,
     private checkoutService: CheckoutService, private basketService: BasketService, private router: Router) { }
@@ -27,6 +30,7 @@ export class CheckoutComponent implements OnInit {
     this.createCheckoutForm();
     this.getUserAddress();
     this.getDeliveryMethods();
+    this.basketTotals$ = this.basketService.basketTotals$;
   }
 
   createCheckoutForm = () => {

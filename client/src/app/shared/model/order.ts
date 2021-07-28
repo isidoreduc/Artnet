@@ -1,8 +1,7 @@
+import { IBaseModel } from "./base-model";
 import { IUserAddress } from "./user";
 
-export interface IDeliveryMethod {
-  id: number;
-  name: string;
+export interface IDeliveryMethod extends IBaseModel {
   deliveryTime: string;
   description: string;
   price: number;
@@ -15,25 +14,24 @@ export interface IOrder {
   deliveryAddress: IUserAddress;
 }
 
-export interface IServerOrder {
-  id: number;
-  name: string;
+export interface IServerOrder extends IBaseModel{
   shopperEmail: string;
   orderDate: string;
   deliveryAddress: IUserAddress;
   deliveryMethod: string;
   deliveryPrice: number;
-  orderItems: OrderItem[];
+  orderItems: IOrderItem[];
   subtotal: number;
   total: number;
   orderStatus: string;
 }
 
-export interface OrderItem {
-  id: number;
-  name: string;
+export interface IOrderItem extends IBaseModel{
   productPictureUrl: string;
   price: number;
   quantity: number;
+  type: string,
+  current: string,
+  author: string;
 }
 

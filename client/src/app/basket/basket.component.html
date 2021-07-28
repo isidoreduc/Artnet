@@ -10,66 +10,18 @@
       <!-- Start col -->
       <div class="col-md-12 col-lg-12 col-xl-12 ">
         <app-basket-summary
+          [items]="(basket$ | async).items"
           [isSummary]="false"
           (deleteItemEvent)="deleteItem($event)"
           (updateQuantityEvent)="updateQuantity($event)"></app-basket-summary>
       </div>
 
-      <!-- <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6 mt-5">
-                <div class="order-note">
-                    <form>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="search" class="form-control" placeholder="Coupon Code" aria-label="Search"
-                                    aria-describedby="button-addonTags">
-                                <div class="input-group-append">
-                                    <button class="input-group-text" type="submit" id="button-addonTags">Apply</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="specialNotes">Special Note for this
-                                order:</label>
-                            <textarea class="form-control" name="specialNotes" id="specialNotes" rows="3"
-                                placeholder="Message here"></textarea>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6 mt-5">
-                <div class="order-total table-responsive ">
-                    <table class="table table-borderless text-right">
-                        <tbody>
-                            <tr>
-                                <td>Sub Total :</td>
-                                <td>$1000.00</td>
-                            </tr>
-                            <tr>
-                                <td>Shipping :</td>
-                                <td>$0.00</td>
-                            </tr>
-                            <tr>
-                                <td>Tax(18%) :</td>
-                                <td>$180.00</td>
-                            </tr>
-                            <tr>
-                                <td class="f-w-7 font-18">
-                                    <h4>Amount :</h4>
-                                </td>
-                                <td class="f-w-7 font-18">
-                                    <h4>$1180.00</h4>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div> -->
     </div>
 
     <!-- Order Summary -->
     <div class="row">
       <div class="col-md-6 col offset-6">
-        <app-order-totals></app-order-totals>
+        <app-order-totals [totals]="basketTotals$ | async"></app-order-totals>
       </div>
     </div>
     <!-- End Order Summary -->

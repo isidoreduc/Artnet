@@ -1,6 +1,6 @@
-<div class="table-responsive " *ngIf="basket$ | async as basket">
+<div class="table-responsive " *ngIf="items && items.length > 0">
   <table class="table table-borderless ">
-    <thead class="border-1" [class.bg-light]="!isSummary">
+    <thead [class.bg-light]="!isSummary || isOrderSummary">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Photo</th>
@@ -12,10 +12,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of basket.items; let i=index" class="border-bottom">
+      <tr *ngFor="let item of items; let i=index" class="border-bottom">
         <th scope="row">{{i+1}}</th>
-        <td><a routerLink="/shop/{{item.id}}"><img src="{{item.pictureUrl}}" class="img-fluid" width="50"
-              alt="product"></a></td>
+        <td *ngIf="!isOrderSummary"><a routerLink="/shop/{{item.id}}"><img src="{{item.pictureUrl }}" class="img-fluid"
+              width="50" alt="product"></a></td>
+        <td *ngIf="isOrderSummary"><a routerLink="/shop/{{item.id}}"><img src="{{item.productPictureUrl }}"
+              class="img-fluid" width="50" alt="product"></a></td>
         <td><a routerLink="/shop/{{item.id}}" style="text-decoration: none;">
             <h6 class="text-uppercase product-title">{{item.name}}</h6>
             <span class="text-muted font-italic">by {{item.author}}</span>
@@ -24,8 +26,8 @@
         <td *ngIf="!isSummary">
           <!-- example of two way binding with event that persists the change (needs FormsModule in the current component's module)-->
           <div class=" mb-0 mx-auto" style="max-width: 5rem;">
-            <input [ngModel]="item.quantity" (ngModelChange)="updateQuantity({quantity:$event, id:item.id})" type="number"
-              class="form-control text-center" name="cartQty1" id="cartQty1" value="{{item.quantity}}">
+            <input [ngModel]="item.quantity" (ngModelChange)="updateQuantity({quantity:$event, id:item.id})"
+              type="number" class="form-control text-center" name="cartQty1" id="cartQty1" value="{{item.quantity}}">
           </div>
           <!-- end example of two way binding with event that persists the change -->
 
