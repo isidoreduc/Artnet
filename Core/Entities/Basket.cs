@@ -14,10 +14,10 @@ namespace Core.Entities
         }
 
         public string Id { get; set; }
+        public int? DeliverymethodId { get; set; }
+        public string ClientSecret { get; set; }
+        public string PaymentIntentId { get; set; }
         public IEnumerable<BasketItem> Items { get; set; } = new List<BasketItem>();
-        
-        
-        
-        
+
     }
 }
