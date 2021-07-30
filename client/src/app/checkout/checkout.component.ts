@@ -19,7 +19,6 @@ export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
   deliveryCost: number;
   deliveryMethods: IDeliveryMethod[];
-  selectedDeliveryMethod: IDeliveryMethod;
   deliveryAddress: IUserAddress;
   basketTotals$: Observable<IBasketTotals>;
 
@@ -88,13 +87,12 @@ export class CheckoutComponent implements OnInit {
 
   updateDeliveryCost = (event: IDeliveryMethod) => {
     this.basketService.setShippingCost(event);
-    this.selectedDeliveryMethod = event;
   };
 
   createOrder = (event: any) => {
     const order = {
       basketId: localStorage.getItem("basket_id"),
-      deliveryMethodId: this.selectedDeliveryMethod.id,
+      deliveryMethodId: this.basketService.getCurrentBasketValue().deliveryMethodId,
       deliveryAddress: this.deliveryAddress
     };
     this.checkoutService.createOrder(order).subscribe(
