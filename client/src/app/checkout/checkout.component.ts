@@ -30,6 +30,7 @@ export class CheckoutComponent implements OnInit {
     this.createCheckoutForm();
     this.getUserAddress();
     this.getDeliveryMethods();
+    this.getDeliveryMethodValue();
     this.basketTotals$ = this.basketService.basketTotals$;
   }
 
@@ -54,6 +55,11 @@ export class CheckoutComponent implements OnInit {
     });
   };
 
+  getDeliveryMethodValue = () => {
+    const basket = this.basketService.getCurrentBasketValue();
+    if(basket.deliveryMethodId)
+      this.checkoutForm.get("deliveryForm").get("deliveryMethod").patchValue(basket.deliveryMethodId.toString());
+  }
 
   getUserAddress = () => this.accountService.getUserAddress().subscribe(
     (a: IUserAddress) => {

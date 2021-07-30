@@ -24,7 +24,11 @@ export class BasketService {
 
   setShippingCost = (deliveryMethod: IDeliveryMethod) => {
     this.shippingCost = deliveryMethod.price;
+    const basket = this.getCurrentBasketValue();
+    basket.deliveryMethodId = deliveryMethod.id;
+    basket.deliveryPrice = deliveryMethod.price;
     this.calculateTotals();
+    this.createOrUpdateBasket(basket);
   }
 
   getBasketTotals = () => this.basketTotalsSource.value;
@@ -35,6 +39,7 @@ export class BasketService {
       .pipe(
         map((basket: IBasket) => {
           this.basketSource.next(basket);
+          this.shippingCost = basket.deliveryPrice;
           this.calculateTotals();
         }
         ));

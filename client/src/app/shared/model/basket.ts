@@ -3,28 +3,32 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export interface IBasketItem extends IBaseModel {
-    price: number,
-    quantity: number,
-    pictureUrl: string,
-    type: string,
-    current: string,
-    author: string;
+  price: number,
+  quantity: number,
+  pictureUrl: string,
+  type: string,
+  current: string,
+  author: string;
 }
 
 export interface IBasket {
-    id: string,
-    items: IBasketItem[];
+  id: string,
+  items: IBasketItem[];
+  deliveryMethodId?: number;
+  deliveryPrice? : number;
+  clientSecret?: string;
+  paymentIntentId?: string;
 }
 
 export interface IBasketTotals {
-    shipping: number,
-    subtotal: number,
-    total: number;
+  shipping: number,
+  subtotal: number,
+  total: number;
 }
 
 
 export class Basket implements IBasket {
-    id = uuidv4();
-    items: IBasketItem[] = [];
+  id = uuidv4();
+  items: IBasketItem[] = [];
 
 }
