@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: "https://localhost:5001/api/",
-  date: new Date().getFullYear()
+  date: new Date().getFullYear(),
+  stripePublicKey: 'pk_test_51JIefWAeUPxyRmBtoFDfpVuUUSTVEwICTpWAkkBVlZWftDc4MGKL2zfRwJuBcRnaJJsJE5vLI2QDyviF4wh0sx43008ools1JQ'
 };
 
 /*

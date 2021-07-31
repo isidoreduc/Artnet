@@ -19,7 +19,9 @@
           <app-checkout-review ></app-checkout-review>
         </cdk-step>
         <cdk-step label="Payment">
-          <app-checkout-payment (createorderClickEvent)="createOrder($event)"></app-checkout-payment>
+          <app-checkout-payment
+            [checkoutForm]="checkoutForm"
+            (createorderClickEvent)="createOrder($event)"></app-checkout-payment>
         </cdk-step>
       </app-stepper>
     </div>

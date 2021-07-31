@@ -9,7 +9,7 @@ import { StripeComponent } from './stripe.component';
     StripeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class StripeModule { }
