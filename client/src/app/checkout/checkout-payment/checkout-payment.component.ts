@@ -1,5 +1,9 @@
+import { OnInit } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { BasketService } from 'src/app/basket/basket.service';
+import { IBasket } from 'src/app/shared/model/basket';
 import { environment } from 'src/environments/environment';
 
 declare var Stripe;
@@ -9,8 +13,9 @@ declare var Stripe;
   templateUrl: './checkout-payment.component.html',
   styleUrls: ['./checkout-payment.component.scss']
 })
-export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
+export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestroy {
   stripePublishableKey = environment.stripePublicKey;
+  stripeSecretKey = environment.stripeSecretKey;
   @Output() createorderClickEvent = new EventEmitter();
   @Input() checkoutForm: FormGroup;
   @ViewChild("cardNumber") cardNumberElement: ElementRef;
@@ -22,8 +27,13 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   cardExpiry: any;
   cardCvc: any;
   cardHandler = this.onChange.bind(this);
+  basket: IBasket;
 
-  constructor() { }
+  constructor(private toastr: ToastrService, private basketService: BasketService) { }
+
+  ngOnInit(): void {
+    this.basket = this.basketService.getCurrentBasketValue();
+  }
 
 
   ngAfterViewInit() {
@@ -55,6 +65,23 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
     this.cardCvc.destroy();
   }
 
-  createOrder = (event: any) =>
-    this.createorderClickEvent.emit(event);
+  createOrder = (event: any) => {
+    this.stripe.confirmCardPayment(this.basket.clientSecret, {
+      payment_method: {
+        card: this.cardNumber,
+        billing_details: {
+          name: this.checkoutForm.get("paymentForm").get("nameOnCard").value,
+        },
+      },
+    })
+      .then(result => {
+        console.log(result)
+        // Handle result.error or result.paymentIntent
+        if (result.paymentIntent) {
+          this.createorderClickEvent.emit(event);
+        } else {
+          this.toastr.error(result.error, "Payment error");
+        }
+      });
+  };
 }
