@@ -1,4 +1,11 @@
 <div class="container mt-5" *ngIf="order">
+  <h4 class="mb-3">Order status:
+    <span
+      [ngStyle]="order.orderStatus === 'Payment Failed' ? {color: 'red'} : order.orderStatus === 'Pending' ?{color: 'yellow'} : {color: 'green'}">
+        {{order.orderStatus}}
+    </span>
+  </h4>
+  <h6 class="text-muted font-italic mb-5">Created: {{date}}</h6>
   <div class="row">
     <div class="col-lg-8">
       <app-basket-summary [items]="order.orderItems" [isOrderSummary]="true"></app-basket-summary>

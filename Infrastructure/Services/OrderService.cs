@@ -26,7 +26,7 @@ namespace Infrastructure.Services
     public async Task<IEnumerable<DeliveryMethod>> GetDeliveryMethodsAsync() =>
       await _unitOfWork.Repository<DeliveryMethod>().GetAllAsync();
 
-    public async Task<Order> CreateOrderAsync(string shopperEmail, int deliveryMethodId, string basketId,     DeliveryAddress deliveryAddress)
+    public async Task<Order> CreateOrderAsync(string shopperEmail, int deliveryMethodId, string basketId,     DeliveryAddress deliveryAddress, string orderStatus)
     {
       // get basket from repo
       var basket = await _basketRepo.GetBasketAsync(basketId);
@@ -49,6 +49,7 @@ namespace Infrastructure.Services
 
       // create order
       var order = new Order(items, shopperEmail, deliveryAddress, deliveryMethod, subtotal);
+      order.OrderStatus = orderStatus;
 
 
       // TODO: save to db

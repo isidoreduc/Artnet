@@ -56,9 +56,9 @@ export class CheckoutComponent implements OnInit {
 
   getDeliveryMethodValue = () => {
     const basket = this.basketService.getCurrentBasketValue();
-    if(basket.deliveryMethodId)
+    if (basket.deliveryMethodId)
       this.checkoutForm.get("deliveryForm").get("deliveryMethod").patchValue(basket.deliveryMethodId.toString());
-  }
+  };
 
   getUserAddress = () => this.accountService.getUserAddress().subscribe(
     (a: IUserAddress) => {
@@ -89,19 +89,31 @@ export class CheckoutComponent implements OnInit {
     this.basketService.setShippingCost(event);
   };
 
-  createOrder = (event: any) => {
+  createOrder = (paymentSucceded: boolean) => {
     const order = {
       basketId: localStorage.getItem("basket_id"),
       deliveryMethodId: this.basketService.getCurrentBasketValue().deliveryMethodId,
-      deliveryAddress: this.deliveryAddress
+      deliveryAddress: this.deliveryAddress,
+      orderStatus: "Pending"
     };
-    this.checkoutService.createOrder(order).subscribe(
-      () => {
-        this.basketService.resetBasket();
-        this.router.navigateByUrl("/shop");
-        this.toastrService.success("Created order successfully", "Order submitted");
-      },
-      err => this.toastrService.error(err.message, "Order error")
-    );
+    if (paymentSucceded) {
+      order.orderStatus = "Payment Received";
+      this.checkoutService.createOrder(order).subscribe(
+        () => {
+          this.basketService.resetBasket();
+          this.router.navigateByUrl("/shop");
+          this.toastrService.success("Created order successfully", "Order submitted");
+        }, err => this.toastrService.error(err.message, "Order error")
+      );
+    } else {
+      order.orderStatus = "Payment Failed";
+      this.checkoutService.createOrder(order).subscribe(
+        () => {
+          // this.basketService.resetBasket();
+          // this.router.navigateByUrl("/shop");
+          this.toastrService.warning("Created order, payment issues though", "Payment issues");
+        }, err => this.toastrService.error(err.message, "Order error"));
+
+    }
   };
 }

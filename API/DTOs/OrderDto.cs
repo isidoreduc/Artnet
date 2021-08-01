@@ -1,3 +1,5 @@
+using Core.Entities.Order;
+
 namespace API.DTOs
 {
     public class OrderDto
@@ -5,5 +7,8 @@ namespace API.DTOs
         public string BasketId { get; set; }
         public int DeliveryMethodId { get; set; }
         public AddressDto DeliveryAddress { get; set; }
+        public string OrderStatus { get; set; }
+
+
     }
 }

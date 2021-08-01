@@ -25,6 +25,7 @@ export class CheckoutReviewComponent implements OnInit {
   createOrUpdateStripeIntent = () => this.stripeService.createOrUpdateIntent(this.basketValue.id).subscribe(
     basket => {
       this.basketService.createOrUpdateBasket(basket);
+      console.log(this.basketValue);
       this.toastrService.success("Created payment intent", "Success");
     }, err => console.log(err.message)
   );

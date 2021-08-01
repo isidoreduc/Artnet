@@ -28,6 +28,7 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
   cardCvc: any;
   cardHandler = this.onChange.bind(this);
   basket: IBasket;
+  paymentSucceded: boolean;
 
   constructor(private toastr: ToastrService, private basketService: BasketService) { }
 
@@ -75,7 +76,8 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
       },
     })
       .then(result => {
-        console.log(result)
+        console.log(result);
+        this.paymentSucceded = result.paymentIntent.status === "succeeded";
         // Handle result.error or result.paymentIntent
         if (result.paymentIntent) {
           this.createorderClickEvent.emit(event);

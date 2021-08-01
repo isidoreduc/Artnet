@@ -13,20 +13,22 @@ import { OrdersService } from '../orders.service';
 export class OrderDetailsComponent implements OnInit {
   order: IServerOrder;
   orderTotals: {};
-  pipe = new DatePipe('en-GB');
+  date: string;
+  orderNumber: number;
 
   constructor(private orderService: OrdersService, private activatedRoute: ActivatedRoute, private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
+    this.orderNumber = Number(this.activatedRoute.snapshot.paramMap.get("id"));
     this.getOrderById();
 
   }
 
-  getOrderById = () => this.orderService.getOrderById(Number(this.activatedRoute.snapshot.paramMap.get("id")))
+  getOrderById = () => this.orderService.getOrderById(this.orderNumber)
     .subscribe(result => {
       this.order = result;
-      const myFormattedDate = this.pipe.transform(this.order.orderDate, 'short');
-      this.breadcrumbService.set("@orderDetails", myFormattedDate);
+      this.date = new DatePipe('en-GB').transform(this.order.orderDate, 'short');
+      this.breadcrumbService.set("@orderDetails", `Order no. ${this.orderNumber}`);
 
       this.orderTotals = {
         subtotal: result.subtotal,

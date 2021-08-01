@@ -12,9 +12,9 @@ namespace Infrastructure.Data.Configuration
         {
             builder.OwnsOne(o => o.DeliveryAddress, a => a.WithOwner());
             // parsing enum value (int) to the set string
-            builder.Property(s => s.OrderStatus).HasConversion(
-                o => o.ToString(),
-                o => (OrderStatus)Enum.Parse(typeof(OrderStatus), o));
+            // builder.Property(s => s.OrderStatus).HasConversion(
+            //     o => o.ToString(),
+            //     o => (OrderStatus)Enum.Parse(typeof(OrderStatus), o));
             builder.HasMany(o => o.OrderItems).WithOne()
                 .OnDelete(DeleteBehavior.Cascade);
         }

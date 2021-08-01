@@ -12,6 +12,7 @@ export interface IOrder {
   basketId: string;
   deliveryMethodId: number;
   deliveryAddress: IUserAddress;
+  orderStatus: string;
 }
 
 export interface IServerOrder extends IBaseModel{

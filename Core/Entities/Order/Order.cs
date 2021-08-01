@@ -24,7 +24,7 @@ namespace Core.Entities.Order
         public DeliveryMethod DeliveryMethod { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
         public decimal Subtotal { get; set; }
-        public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
+        public string OrderStatus { get; set; }
         public string PaymentIntentId { get; set; }
 
         public decimal GetTotal() => Subtotal + DeliveryMethod.Price;

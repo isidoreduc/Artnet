@@ -52,8 +52,9 @@ namespace API.Controllers
     [HttpPost]
     public async Task<ActionResult<Order>> CreateOrder(OrderDto orderDto)
     {
+      var deliveryAddress = _mapper.Map<AddressDto, DeliveryAddress>(orderDto.DeliveryAddress);
       var order = await _orderService.CreateOrderAsync(User.GetUserEmail(), orderDto.DeliveryMethodId,
-        orderDto.BasketId, _mapper.Map<AddressDto, DeliveryAddress>(orderDto.DeliveryAddress));
+        orderDto.BasketId, deliveryAddress, orderDto.OrderStatus);
       return order != null ? Ok(order) : BadRequest(new ApiException(400));
     }
   }
