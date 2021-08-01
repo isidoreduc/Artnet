@@ -21,6 +21,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   cardNumber: any;
   cardExpiry: any;
   cardCvc: any;
+  cardHandler = this.onChange.bind(this);
 
   constructor() { }
 
@@ -28,15 +29,25 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.stripe = Stripe(this.stripePublishableKey);
     const elements = this.stripe.elements();
+
     this.cardNumber = elements.create("cardNumber");
     this.cardNumber.mount(this.cardNumberElement.nativeElement);
+    this.cardNumber.addEventListener("change", this.cardHandler);
 
     this.cardExpiry = elements.create("cardExpiry");
     this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
+    this.cardNumber.addEventListener("change", this.cardHandler);
+
 
     this.cardCvc = elements.create("cardCvc");
     this.cardCvc.mount(this.cardCvcElement.nativeElement);
+    this.cardNumber.addEventListener("change", this.cardHandler);
+
   };
+
+  onChange({ error }) { //distructuring of the response object from stripe; getting only the error property
+    this.cardErrors = error ? error.message : null;
+  }
 
   ngOnDestroy() {
     this.cardNumber.destroy();
