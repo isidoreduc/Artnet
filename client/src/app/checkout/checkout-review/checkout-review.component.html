@@ -1,13 +1,17 @@
-<div class="mt-5">
-  <app-basket-summary [items]="(basket$ | async).items"></app-basket-summary>
-</div>
-<footer class="mt-5 d-flex justify-content-between align-items-end">
-  <button class="btn btn-outline-success text-uppercase" cdkStepperPrevious><i class="fa fa-chevron-left mr-2"></i>Back to delivery info</button>
-  <button
-    class="btn btn-outline-success text-uppercase"
-    cdkStepperNext
-    (click)="createOrUpdateStripeIntent()"
-    >
-      To payment info<i class="fa fa-chevron-right ml-2"></i>
-    </button>
-</footer>
+
+<ng-container *ngIf="basket$ | async as basket">
+
+  <div class="mt-5">
+    <app-basket-summary [items]="basket.items"></app-basket-summary>
+  </div>
+  <footer class="mt-5 d-flex justify-content-between align-items-end">
+    <button class="btn btn-outline-success text-uppercase" cdkStepperPrevious><i class="fa fa-chevron-left mr-2"></i>Back to delivery info</button>
+    <button
+      class="btn btn-outline-success text-uppercase"
+      cdkStepperNext
+      (click)="createOrUpdateStripeIntent()"
+      >
+        To payment info<i class="fa fa-chevron-right ml-2"></i>
+      </button>
+  </footer>
+</ng-container>

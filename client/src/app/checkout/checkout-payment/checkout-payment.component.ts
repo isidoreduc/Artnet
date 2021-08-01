@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
@@ -9,11 +9,11 @@ declare var Stripe;
   templateUrl: './checkout-payment.component.html',
   styleUrls: ['./checkout-payment.component.scss']
 })
-export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   stripePublishableKey = environment.stripePublicKey;
   @Output() createorderClickEvent = new EventEmitter();
   @Input() checkoutForm: FormGroup;
-  @ViewChild("cardNumber", { static: true }) cardNumberElement: ElementRef;
+  @ViewChild("cardNumber") cardNumberElement: ElementRef;
   @ViewChild("cardExpiry", { static: true }) cardExpiryElement: ElementRef;
   @ViewChild("cardCvc", { static: true }) cardCvcElement: ElementRef;
   cardErrors: any;
@@ -24,10 +24,8 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
 
-  ngAfterViewInit = () => {
+  ngAfterViewInit() {
     this.stripe = Stripe(this.stripePublishableKey);
     const elements = this.stripe.elements();
     this.cardNumber = elements.create("cardNumber");
@@ -40,7 +38,7 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
     this.cardCvc.mount(this.cardCvcElement.nativeElement);
   };
 
-  ngOnDestroy = () => {
+  ngOnDestroy() {
     this.cardNumber.destroy();
     this.cardExpiry.destroy();
     this.cardCvc.destroy();
