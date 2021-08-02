@@ -1,10 +1,18 @@
+import { UpperCasePipe } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
+import { AccountService } from 'src/app/account/account.service';
 import { BasketService } from 'src/app/basket/basket.service';
+import { OrdersService } from 'src/app/orders/orders.service';
 import { IBasket } from 'src/app/shared/model/basket';
+import { IUserAddress } from 'src/app/shared/model/user';
+import { StripeService } from 'src/app/stripe/stripe.service';
 import { environment } from 'src/environments/environment';
+import { CheckoutService } from '../checkout.service';
 
 declare var Stripe;
 
@@ -16,7 +24,6 @@ declare var Stripe;
 export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestroy {
   stripePublishableKey = environment.stripePublicKey;
   stripeSecretKey = environment.stripeSecretKey;
-  @Output() createorderClickEvent = new EventEmitter();
   @Input() checkoutForm: FormGroup;
   @ViewChild("cardNumber") cardNumberElement: ElementRef;
   @ViewChild("cardExpiry", { static: true }) cardExpiryElement: ElementRef;
@@ -28,12 +35,13 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
   cardCvc: any;
   cardHandler = this.onChange.bind(this);
   basket: IBasket;
-  paymentSucceded: boolean;
+  paymentSucceeded: boolean;
+  checkOrderPaymentId: string;
 
-  constructor(private toastr: ToastrService, private basketService: BasketService) { }
+  constructor(private toastr: ToastrService, private basketService: BasketService, private accountService: AccountService, private checkoutService: CheckoutService, private toastrService: ToastrService, private router: Router, private stripeService: StripeService, private orderService: OrdersService) { }
 
   ngOnInit(): void {
-    this.basket = this.basketService.getCurrentBasketValue();
+    this.checkForExistingOrderId();
   }
 
 
@@ -66,7 +74,19 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
     this.cardCvc.destroy();
   }
 
-  createOrder = (event: any) => {
+  completePayment = () => {
+    this.basket = this.basketService.getCurrentBasketValue();
+    const deliveryAddress: IUserAddress = this.checkoutForm.get("addressForm").value;
+
+
+    const order = {
+      basketId: localStorage.getItem("basket_id"),
+      deliveryMethodId: this.basketService.getCurrentBasketValue().deliveryMethodId,
+      deliveryAddress,
+      orderStatus: "Pending",
+      paymentIntentId: null
+    };
+
     this.stripe.confirmCardPayment(this.basket.clientSecret, {
       payment_method: {
         card: this.cardNumber,
@@ -77,13 +97,48 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
     })
       .then(result => {
         console.log(result);
-        this.paymentSucceded = result.paymentIntent.status === "succeeded";
-        // Handle result.error or result.paymentIntent
         if (result.paymentIntent) {
-          this.createorderClickEvent.emit(event);
-        } else {
-          this.toastr.error(result.error, "Payment error");
+          order.orderStatus = "Payment Received";
+          this.checkoutService.createOrder(order).subscribe(
+            () => {
+              this.basketService.resetBasket();
+              this.router.navigateByUrl("/shop");
+              this.toastrService.success("Created order successfully", "Order submitted");
+            }, err => this.toastrService.error(err.message, "Order error")
+          );
+
         }
-      });
+        else {
+          order.orderStatus = "Payment Failed";
+          order.paymentIntentId = this.basket.paymentIntentId;
+
+          if (!this.checkOrderPaymentId) {
+            this.checkoutService.createOrder(order).subscribe(
+              () => this.toastrService.warning("Created order, payment issues though", result.error.message),
+              err => this.toastrService.error(err.message, "Order error"));
+          } else {
+            this.toastrService.error(result.error.message);
+          }
+
+        }
+
+      }
+      );
+
   };
+
+
+
+  private checkForExistingOrderId = () => {
+    this.orderService.getOrders().subscribe(orders => {
+      this.basket = this.basketService.getCurrentBasketValue();
+      this.checkOrderPaymentId = orders.filter(o => o.paymentIntentId === this.basket.paymentIntentId)[0].paymentIntentId;
+      console.log("existing order: " + this.checkOrderPaymentId);
+    }
+    );
+  }
+
+
+
+
 }

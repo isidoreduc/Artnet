@@ -18,5 +18,8 @@ namespace API.DTOs
     public string Type { get; set; }
     public string Current { get; set; }
     public string Author { get; set; }
+    public string PaymentIntentId { get; set; }
+
+
   }
 }

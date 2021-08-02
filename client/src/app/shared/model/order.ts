@@ -10,6 +10,7 @@ export interface IDeliveryMethod extends IBaseModel {
 
 export interface IOrder {
   basketId: string;
+  paymentIntentId: string;
   deliveryMethodId: number;
   deliveryAddress: IUserAddress;
   orderStatus: string;
@@ -25,6 +26,8 @@ export interface IServerOrder extends IBaseModel{
   subtotal: number;
   total: number;
   orderStatus: string;
+  paymentIntentId: string;
+
 }
 
 export interface IOrderItem extends IBaseModel{

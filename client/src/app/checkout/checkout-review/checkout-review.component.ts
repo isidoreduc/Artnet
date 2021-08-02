@@ -22,12 +22,10 @@ export class CheckoutReviewComponent implements OnInit {
     this.basketValue = this.basketService.getCurrentBasketValue();
   }
 
-  createOrUpdateStripeIntent = () => this.stripeService.createOrUpdateIntent(this.basketValue.id).subscribe(
-    basket => {
-      this.basketService.createOrUpdateBasket(basket);
-      console.log(this.basketValue);
-      this.toastrService.success("Created payment intent", "Success");
-    }, err => console.log(err.message)
-  );
+  createOrUpdateStripeIntent = () => this.stripeService.createOrUpdateIntent(this.basketValue.id)
+    .subscribe(() =>
+      this.toastrService.success("Created payment intent", "Success"),
+      err => console.log(err.message)
+    );
 
 }
