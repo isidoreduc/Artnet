@@ -9,16 +9,18 @@ namespace Core.Entities.Order
     {
     }
 
-    public Order(IReadOnlyList<OrderItem> orderItems, string shopperEmail, DeliveryAddress deliveryAddress, DeliveryMethod deliveryMethod, decimal subtotal)
-        {
-            OrderItems = orderItems;
-            ShopperEmail = shopperEmail;
-            DeliveryAddress = deliveryAddress;
-            DeliveryMethod = deliveryMethod;
-            Subtotal = subtotal;
-        }
+    public Order(string shopperEmail, DeliveryAddress deliveryAddress, DeliveryMethod deliveryMethod, IReadOnlyList<OrderItem> orderItems, decimal subtotal, string orderStatus, string paymentIntentId)
+    {
+      ShopperEmail = shopperEmail;
+      DeliveryAddress = deliveryAddress;
+      DeliveryMethod = deliveryMethod;
+      OrderItems = orderItems;
+      Subtotal = subtotal;
+      OrderStatus = orderStatus;
+      PaymentIntentId = paymentIntentId;
+    }
 
-        public string ShopperEmail { get; set; }
+    public string ShopperEmail { get; set; }
         public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
         public DeliveryAddress DeliveryAddress { get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }

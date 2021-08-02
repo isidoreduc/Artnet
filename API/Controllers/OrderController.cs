@@ -54,7 +54,7 @@ namespace API.Controllers
     {
       var deliveryAddress = _mapper.Map<AddressDto, DeliveryAddress>(orderDto.DeliveryAddress);
       var order = await _orderService.CreateOrderAsync(User.GetUserEmail(), orderDto.DeliveryMethodId,
-        orderDto.BasketId, deliveryAddress, orderDto.OrderStatus, orderDto.PaymentIntentId);
+        orderDto.BasketId, deliveryAddress, orderDto.OrderStatus);
       return order != null ? Ok(order) : BadRequest(new ApiException(400));
     }
   }

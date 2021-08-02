@@ -14,18 +14,26 @@ import { StripeService } from 'src/app/stripe/stripe.service';
 export class CheckoutReviewComponent implements OnInit {
   basket$: Observable<IBasket>;
   basketValue: IBasket;
+  checkForPaymentIntentId: string;
 
   constructor(private basketService: BasketService, private stripeService: StripeService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
     this.basketValue = this.basketService.getCurrentBasketValue();
+    this.checkForPaymentIntentId = this.basketValue.paymentIntentId;
   }
 
-  createOrUpdateStripeIntent = () => this.stripeService.createOrUpdateIntent(this.basketValue.id)
-    .subscribe(() =>
-      this.toastrService.success("Created payment intent", "Success"),
-      err => console.log(err.message)
-    );
 
+
+
+  createOrUpdateStripeIntent = () => {
+    if (!this.checkForPaymentIntentId) { // create intent only if there is not one yet
+      this.stripeService.createOrUpdateIntent(this.basketValue.id)
+        .subscribe(() =>
+          this.toastrService.success("Created payment intent", "Success"),
+          err => console.log(err.message)
+        );
+    }
+  };
 }

@@ -26,6 +26,8 @@ namespace Infrastructure.Services
     {
       StripeConfiguration.ApiKey = _config["Stripe:Secret_key"];
       var basket = await _basketRepository.GetBasketAsync(basketId);
+      if(basket == null) return null;
+
       var shippingPrice = basket.DeliveryPrice;
 
       foreach (var item in basket.Items)

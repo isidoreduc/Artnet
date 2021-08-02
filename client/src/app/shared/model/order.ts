@@ -10,7 +10,7 @@ export interface IDeliveryMethod extends IBaseModel {
 
 export interface IOrder {
   basketId: string;
-  paymentIntentId: string;
+  paymentIntentId?: string;
   deliveryMethodId: number;
   deliveryAddress: IUserAddress;
   orderStatus: string;
