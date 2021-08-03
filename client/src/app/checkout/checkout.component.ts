@@ -71,8 +71,9 @@ export class CheckoutComponent implements OnInit {
 
   updateUserAddress = (event: any) => this.accountService.updateUserAddress(this.checkoutForm.get("addressForm").value)
     .subscribe(
-      () => {
+      (address: IUserAddress) => {
         this.toastrService.success("User address successfully updated", "Update success");
+        this.checkoutForm.get("addressForm").reset(address);
       },
       err => {
         console.log(err);

@@ -37,7 +37,6 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
   constructor(private basketService: BasketService, private checkoutService: CheckoutService, private toastrService: ToastrService, private router: Router, private orderService: OrdersService) { }
 
   ngOnInit(): void {
-    this.checkForExistingOrderPaymentIntentId();
   }
 
 
@@ -109,14 +108,14 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
 
 
 
-  private checkForExistingOrderPaymentIntentId = () => {
-    this.orderService.getOrders().subscribe(orders => {
-      this.basket = this.basketService.getCurrentBasketValue();
-      this.checkOrderPaymentId = orders.filter(o => o.paymentIntentId === this.basket.paymentIntentId)[0].paymentIntentId;
-      console.log("existing order: " + this.checkOrderPaymentId);
-    }
-    );
-  };
+  // private checkForExistingOrderPaymentIntentId = () => {
+  //   this.orderService.getOrders().subscribe(orders => {
+  //     this.basket = this.basketService.getCurrentBasketValue();
+  //     this.checkOrderPaymentId = orders.filter(o => o.paymentIntentId === this.basket.paymentIntentId)[0].paymentIntentId;
+  //     console.log("existing order: " + this.checkOrderPaymentId);
+  //   }
+  //   );
+  // };
 
 
 

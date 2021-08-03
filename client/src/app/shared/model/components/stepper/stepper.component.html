@@ -6,6 +6,7 @@
 
   <header class="example-step-navigation-bar">
     <button
+      [disabled]="true"
       class="example-step col-3 py-3"
       [class.example-active]="selectedIndex === i"
       *ngFor="let step of steps; let i = index"
