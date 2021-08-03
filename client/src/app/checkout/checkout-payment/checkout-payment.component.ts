@@ -33,6 +33,9 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
   paymentSucceeded: boolean;
   checkOrderPaymentId: string;
   loading = false;
+  cardNumberValid = false;
+  cardExpiryValid = false;
+  cardCvcValid = false;
 
   constructor(private basketService: BasketService, private checkoutService: CheckoutService, private toastrService: ToastrService, private router: Router, private orderService: OrdersService) { }
 
@@ -50,18 +53,26 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
 
     this.cardExpiry = elements.create("cardExpiry");
     this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
-    this.cardNumber.addEventListener("change", this.cardHandler);
+    this.cardExpiry.addEventListener("change", this.cardHandler);
 
 
     this.cardCvc = elements.create("cardCvc");
     this.cardCvc.mount(this.cardCvcElement.nativeElement);
-    this.cardNumber.addEventListener("change", this.cardHandler);
+    this.cardCvc.addEventListener("change", this.cardHandler);
 
   };
 
-  onChange({ error }) { //distructuring of the response object from stripe; getting only the error property
-    this.cardErrors = error ? error.message : null;
+  onChange(event) {
+    console.log(event);
+    this.cardErrors = event.error ? event.error.message : null;
+    if(event.elementType === "cardNumber")
+      this.cardNumberValid = event.complete;
+    if(event.elementType === "cardExpiry")
+      this.cardExpiryValid = event.complete;
+    if(event.elementType === "cardCvc")
+      this.cardCvcValid = event.complete;
   }
+  // elementType: "cardNumber", error: undefined, value: undefined, empty: false, complete: false
 
   ngOnDestroy() {
     this.cardNumber.destroy();
