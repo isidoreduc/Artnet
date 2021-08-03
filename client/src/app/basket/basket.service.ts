@@ -54,6 +54,7 @@ export class BasketService {
   deleteBasket = (id: string) => this.http.delete<boolean>(this.baseUrl + `basket?basketid=${id}`)
     .subscribe(() => {
       this.basketSource.next(null);
+      this.basketTotalsSource.next(null);
       localStorage.removeItem("basket_id");
     }, err => console.log(err));
 
