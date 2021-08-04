@@ -29,7 +29,7 @@ export class BasketService {
     basket.deliveryPrice = deliveryMethod.price;
     this.calculateTotals();
     this.createOrUpdateBasket(basket);
-  }
+  };
 
   getBasketTotals = () => this.basketTotalsSource.value;
 
@@ -56,6 +56,7 @@ export class BasketService {
       this.basketSource.next(null);
       this.basketTotalsSource.next(null);
       localStorage.removeItem("basket_id");
+      this.shippingCost = 0;
     }, err => console.log(err));
 
 
@@ -65,7 +66,7 @@ export class BasketService {
     this.basketSource.next(null);
     this.basketTotalsSource.next(null);
     localStorage.removeItem("basket_id");
-  }
+  };
 
   addItemToBasket = (item: IProduct, quantity = 1) => {
     const itemToAdd: IBasketItem = this.mapProductToBasketItem(item, quantity);

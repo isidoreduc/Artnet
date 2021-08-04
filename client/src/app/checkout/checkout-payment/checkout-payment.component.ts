@@ -103,9 +103,9 @@ export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestro
       });
 
       if (paymentResult.paymentIntent) {
-        this.basketService.resetBasket();
+        this.basketService.deleteBasket(this.basket.id);
         this.router.navigateByUrl("/shop");
-        this.toastrService.success("Created order successfully", "Order submitted");
+        this.toastrService.success("Created order successfully", "Payment received");
       }
       else {
         this.toastrService.error(paymentResult.error.message);
