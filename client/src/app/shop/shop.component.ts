@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IPagination, IProduct } from '../shared/model/product';
 import { IAuthor, ICurrent, IType } from '../shared/model/product-details';
-import { ShopService } from './shop.service';
 import { ShopParams } from '../shared/model/shop-params';
+import { ShopService } from './shop.service';
 
 @Component({
   selector: 'app-shop',
@@ -27,7 +27,6 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    // this.getProductById(3);
     this.getProductTypes();
     this.getProductCurrents();
     this.getProductAuthors();
