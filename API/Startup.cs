@@ -31,10 +31,10 @@ namespace API
             services.AddSwaggerService(); // extension method
 
             services.AddDbContext<StoreContext>(options =>
-                options.UseSqlite(_configuration["ConnectionStrings:SqliteConnection"]));
+                options.UseNpgsql(_configuration["ConnectionStrings:PostgressConnection"]));
 
             services.AddDbContext<IdentityContext>(options =>
-                options.UseSqlite(_configuration["ConnectionStrings:SqliteIdentityConnection"]));
+                options.UseNpgsql(_configuration["ConnectionStrings:PostgressIdentityConnection"]));
 
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {

@@ -10,21 +10,24 @@ using Core.Entities.Order;
 using Order = Core.Entities.Order.Order;
 using Microsoft.Extensions.Logging;
 using Core.Specifications;
+using Microsoft.Extensions.Configuration;
 
 namespace API.Controllers
 {
   public class StripeController : BaseApiController
   {
     private readonly IStripeService _stripeService;
-    private const string WebHookSecret = "whsec_SGH7RKIFUu53qiUKMUpyTHU6W8mA3yRA";
+    private readonly string _webHookSecret;
+    // command in stripe-cli: stripe listen -f https://localhost:5001/api/stripe/webhook
     private readonly ILogger<StripeController> _logger;
     private readonly IUnitOfWork _unitOfWork;
 
-    public StripeController(IStripeService stripeService, ILogger<StripeController> logger, IUnitOfWork unitOfWork)
+    public StripeController(IStripeService stripeService, ILogger<StripeController> logger, IUnitOfWork unitOfWork, IConfiguration config)
     {
       _unitOfWork = unitOfWork;
       _logger = logger;
       _stripeService = stripeService;
+      _webHookSecret = config["Stripe:WebHookSecret"];
     }
 
     [Authorize]
@@ -40,7 +43,7 @@ namespace API.Controllers
     public async Task<IActionResult> StripeHook()
     {
       var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
-      var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"], WebHookSecret);
+      var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"], _webHookSecret);
 
       PaymentIntent intent = (PaymentIntent)stripeEvent.Data.Object;
       var specification = new OrderByPaymentIntentSpecification(intent.Id);
