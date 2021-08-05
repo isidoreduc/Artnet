@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { BasketService } from 'src/app/basket/basket.service';
 import { OrdersService } from 'src/app/orders/orders.service';
 import { IBasket } from 'src/app/shared/model/basket';
-import { IUserAddress } from 'src/app/shared/model/user';
 import { environment } from 'src/environments/environment';
 import { CheckoutService } from '../checkout.service';
 
