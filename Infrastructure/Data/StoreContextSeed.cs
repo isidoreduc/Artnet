@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Core.Entities;
@@ -15,10 +16,10 @@ namespace Infrastructure.Data
       {
           try
           {
-
+              var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
               if (!context.ProductCurrents.Any())
               {
-                var productCurrentsData = File.ReadAllText("../Infrastructure/Data/SeedData/ProductCurrents.json");
+                var productCurrentsData = File.ReadAllText($@"{path}/Data/SeedData/ProductCurrents.json");
                 var productCurrents = JsonSerializer.Deserialize<IEnumerable<ProductCurrent>>(productCurrentsData);
 
                 foreach (var item in productCurrents)
@@ -29,7 +30,7 @@ namespace Infrastructure.Data
               }
               if (!context.ProductTypes.Any())
               {
-                var productTypesData = File.ReadAllText("../Infrastructure/Data/SeedData/ProductTypes.json");
+                var productTypesData = File.ReadAllText($@"{path}/Data/SeedData/ProductTypes.json");
                 var productTypes = JsonSerializer.Deserialize<IEnumerable<ProductType>>(productTypesData);
 
                 foreach (var item in productTypes)
@@ -40,7 +41,7 @@ namespace Infrastructure.Data
               }
               if (!context.Authors.Any())
               {
-                var authorsData = File.ReadAllText("../Infrastructure/Data/SeedData/Authors.json");
+                var authorsData = File.ReadAllText($@"{path}/Data/SeedData/Authors.json");
                 var authors = JsonSerializer.Deserialize<IEnumerable<Author>>(authorsData);
 
                 foreach (var item in authors)
@@ -52,7 +53,7 @@ namespace Infrastructure.Data
               // should be last, so the foreign keys be populated
               if (!context.Products.Any())
               {
-                var productsData = File.ReadAllText("../Infrastructure/Data/SeedData/Products.json");
+                var productsData = File.ReadAllText($@"{path}/Data/SeedData/Products.json");
                 var products = JsonSerializer.Deserialize<IEnumerable<Product>>(productsData);
 
                 foreach (var item in products)
@@ -64,7 +65,7 @@ namespace Infrastructure.Data
 
               if (!context.DeliveryMethods.Any())
               {
-                var deliveryMethodData = File.ReadAllText("../Infrastructure/Data/SeedData/delivery.json");
+                var deliveryMethodData = File.ReadAllText($@"{path}/Data/SeedData/delivery.json");
                 var deliveryMethods = JsonSerializer.Deserialize<IEnumerable<DeliveryMethod>>(deliveryMethodData);
 
                 foreach (var item in deliveryMethods)

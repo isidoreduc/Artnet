@@ -6,3 +6,4 @@ artnet static files
 *rdb
 *.db-*
 wwwroot
+publish
