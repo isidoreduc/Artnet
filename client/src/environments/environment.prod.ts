@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  adminEmail: "admin@flairforce.one",
   apiUrl: "api/",
   date: new Date().getFullYear(),
   stripePublicKey: 'pk_test_51JIefWAeUPxyRmBtoFDfpVuUUSTVEwICTpWAkkBVlZWftDc4MGKL2zfRwJuBcRnaJJsJE5vLI2QDyviF4wh0sx43008ools1JQ',

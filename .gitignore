@@ -7,3 +7,4 @@ artnet static files
 *.db-*
 wwwroot
 publish
+readme.txt

@@ -6,7 +6,6 @@ using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
-using Core.Entities.Order;
 using Order = Core.Entities.Order.Order;
 using Microsoft.Extensions.Logging;
 using Core.Specifications;

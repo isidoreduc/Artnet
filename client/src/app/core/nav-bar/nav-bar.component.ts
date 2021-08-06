@@ -6,6 +6,7 @@ import { AccountService } from 'src/app/account/account.service';
 import { BasketService } from 'src/app/basket/basket.service';
 import { IBasket, IBasketItem } from 'src/app/shared/model/basket';
 import { IUser } from 'src/app/shared/model/user';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,12 +17,15 @@ export class NavBarComponent implements OnInit {
   basket: IBasket;
   basket$: Observable<IBasket>;
   user$: Observable<IUser>;
+  admin = false;
+  adminEmail = environment.adminEmail;
 
   constructor(private basketService: BasketService, private toastr: ToastrService, private router: Router, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
     this.user$ = this.accountService.user$;
+    this.checkIfAdmin();
   }
 
   navigateToBasket = () => {
@@ -34,4 +38,8 @@ export class NavBarComponent implements OnInit {
 
   logout = () => this.accountService.logout();
 
+  checkIfAdmin = () => this.accountService.user$.subscribe(user => {
+    this.admin = user && user.email === this.adminEmail;
+    return user;
+  }, err => console.log(err));
 }
