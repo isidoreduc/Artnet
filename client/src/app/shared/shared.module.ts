@@ -11,6 +11,7 @@ import { TextInputComponent } from './model/components/text-input/text-input.com
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import { StepperComponent } from './model/components/stepper/stepper.component';
 import { BasketSummaryComponent } from './model/components/basket-summary/basket-summary.component';
+import { ContactComponent } from './model/components/contact/contact.component';
 
 
 
@@ -21,7 +22,8 @@ import { BasketSummaryComponent } from './model/components/basket-summary/basket
     OrderTotalsComponent,
     TextInputComponent,
     StepperComponent,
-    BasketSummaryComponent
+    BasketSummaryComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
