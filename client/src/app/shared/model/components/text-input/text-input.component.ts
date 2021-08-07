@@ -11,6 +11,7 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   @Input() type = 'text';
   @Input() label = "";
   @Input() isRegisterPassword = false;
+  @Input() isContact = false;
 
   constructor(@Self() public controlDirective: NgControl) {
     this.controlDirective.valueAccessor = this;

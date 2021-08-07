@@ -12,6 +12,7 @@ import * as olProj from 'ol/proj';
 import { Feature } from 'ol';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -21,10 +22,14 @@ import VectorLayer from 'ol/layer/Vector';
 export class ContactComponent implements OnInit {
   date = environment.date;
   map: any;
-  constructor() { }
+  label = "Enter your message"
+  contactForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.createMap();
+    this.createContactForm();
   }
 
   createMap = () => {
@@ -66,4 +71,16 @@ export class ContactComponent implements OnInit {
     });
   }
 
+  createContactForm = () => {
+
+    this.contactForm = this.fb.group({
+      firstname: [null, [Validators.required, Validators.minLength(4)]],
+      lastname: [null, [Validators.required, Validators.minLength(4)]],
+      email: [null, [Validators.required, Validators.pattern("^([a-zA-Z0-9]+(?:[.-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:[.-]?[a-zA-Z0-9]+)*\\.[a-zA-Z]{2,7})$")]],
+      message: [null, [Validators.required]],
+    })
+  }
+
+
+  sendMessage = () => console.log(this.contactForm.value)
 }
