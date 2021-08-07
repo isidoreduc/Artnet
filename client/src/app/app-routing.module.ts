@@ -6,7 +6,6 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
 import { ServerErrorComponent } from './core/server-error/server-error.component';
 import { TestErrorComponent } from './core/test-error/test-error.component';
 import { HomeComponent } from './home/home.component';
-import { ContactComponent } from './shared/model/components/contact/contact.component';
 
 
 const routes: Routes = [
@@ -14,7 +13,9 @@ const routes: Routes = [
   { path: "test-error", canActivate: [AdminGuard], component: TestErrorComponent, data: { breadcrumb: "Test Error" } },
   { path: "server-error", canActivate: [AdminGuard], component: ServerErrorComponent, data: { breadcrumb: "Server Error" } },
   { path: "not-found", component: NotFoundComponent, data: { breadcrumb: "Not Found" } },
-  { path: "contact", component: ContactComponent, data: { breadcrumb: "Contact" } },
+
+  { path: "contact", loadChildren: () => import("./contact/contact.module")
+      .then(mod => mod.ContactModule), data: { breadcrumb: "Contact" } },
 
   {
     path: "shop", loadChildren: () => import("./shop/shop.module")

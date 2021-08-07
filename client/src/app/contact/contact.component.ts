@@ -5,7 +5,7 @@ import 'ol/ol.css';
 import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import TileLayer from 'ol/layer/Tile';
-import {Icon, Style} from 'ol/style';
+import { Icon, Style } from 'ol/style';
 import Point from 'ol/geom/Point';
 import View from 'ol/View';
 import * as olProj from 'ol/proj';
@@ -13,6 +13,8 @@ import { Feature } from 'ol';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ContactService } from './contact.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact',
@@ -22,10 +24,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class ContactComponent implements OnInit {
   date = environment.date;
   map: any;
-  label = "Enter your message"
+  label = "Enter your message";
   contactForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private contactService: ContactService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.createMap();
@@ -69,7 +71,7 @@ export class ContactComponent implements OnInit {
       }),
 
     });
-  }
+  };
 
   createContactForm = () => {
 
@@ -78,9 +80,16 @@ export class ContactComponent implements OnInit {
       lastname: [null, [Validators.required, Validators.minLength(4)]],
       email: [null, [Validators.required, Validators.pattern("^([a-zA-Z0-9]+(?:[.-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:[.-]?[a-zA-Z0-9]+)*\\.[a-zA-Z]{2,7})$")]],
       message: [null, [Validators.required]],
-    })
-  }
+    });
+  };
 
 
-  sendMessage = () => console.log(this.contactForm.value)
+  sendMessage = () => {
+    const message = this.contactForm.value;
+    this.contactService.createMessage(message).subscribe(
+      () => {
+        this.toastr.success("Message received");
+        this.contactForm.reset();
+      }, err => this.toastr.error(err.error.message, "Message failed. Please retry."));
+  };
 }
