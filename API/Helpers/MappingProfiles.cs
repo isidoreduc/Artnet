@@ -40,7 +40,7 @@ namespace API.Helpers
               // .ForMember(destinationMember => destinationMember.Total, memberOptions => memberOptions.MapFrom(sourceMember => sourceMember.GetTotal())) - automapper convention based mapping: it looks for a property name and if it has "Get" in front it does map it: example prop Total gets mapped from method GetTotal()
 
             ;
-
+          CreateMap<ContactMessageDto, ContactMessage>().ReverseMap();
         }
     }
 }

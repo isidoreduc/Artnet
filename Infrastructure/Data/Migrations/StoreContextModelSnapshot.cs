@@ -43,6 +43,36 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Authors");
                 });
 
+            modelBuilder.Entity("Core.Entities.ContactMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Firstname")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset>("TimeAdded")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactMessages");
+                });
+
             modelBuilder.Entity("Core.Entities.Order.DeliveryMethod", b =>
                 {
                     b.Property<int>("Id")

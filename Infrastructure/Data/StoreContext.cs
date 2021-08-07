@@ -18,6 +18,7 @@ namespace Infrastructure.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+        public DbSet<ContactMessage> ContactMessages { get; set; }
 
 
         // converting secimal types to double to accommodate Sqlite
