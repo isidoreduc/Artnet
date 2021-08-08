@@ -1,7 +1,7 @@
 <div class="container mt-3">
     <div class="row">
         <!-- showing nothing under the spinner -->
-        <ng-container *ngIf="products && types && currents && authors"> 
+        <ng-container *ngIf="products && types && currents && authors">
 
             <div class="col-sm-12 col-md-3" >
     <!-- filtering -->
@@ -11,7 +11,7 @@
                         {{item.name}}
                     </option>
                 </select>
-    
+
                 <h5 class="mt-5">Types</h5>
                 <ul class="list-group">
                     <li class="list-group-item filtering" *ngFor="let item of types" [class.active]="shopParams.typeId === item.id"
@@ -19,8 +19,8 @@
                         {{item.name}}
                     </li>
                 </ul>
-    
-    
+
+
                 <h5 class="mt-5">Currents</h5>
                 <ul class="list-group">
                     <li class="list-group-item" *ngFor="let item of currents"
@@ -28,28 +28,19 @@
                         {{item.name}}
                     </li>
                 </ul>
-    <!-- filtering -->
-    
-                <!-- <h5 class="mt-5">Artists</h5>
-                <select class="custom-select" (change)="onAuthorSelected($event.target.value)">
-                    <option 
-                        *ngFor="let item of authors"
-                        [value]='item.id'>
-                            {{item.name}}
-                    </option>
-                </select> -->
+
             </div>
-    
-    
+
+
             <div class="col-md-9">
                 <div class="d-flex justify-content-between align-items-center mb-2">
     <!-- pagination header -->
-                    <app-pagination-header [totalCount]="totalCount" 
+                    <app-pagination-header [totalCount]="totalCount"
                         [pageIndex]="shopParams.pageIndex"
                         [pageSize]="shopParams.pageSize">
                     </app-pagination-header>
     <!-- pagination header -->
-    
+
     <!-- search bar -->
                     <div class="form-inline ">
                         <div class="input-group input-group-sm">
@@ -67,9 +58,9 @@
                     </div>
                 </div>
     <!-- products /-->
-    
+
     <!-- pagination -->
-                <app-pagination (pageChangedEvent)="onPageChanged($event)" 
+                <app-pagination (pageChangedEvent)="onPageChanged($event)"
                     [totalCount]="totalCount"
                     [pageSize]="shopParams.pageSize"
                     >

@@ -40,8 +40,6 @@ export class ShopComponent implements OnInit {
       this.totalCount = response.count;
     }, error => console.log(error));
 
-  // getProductById = (id: number) => this.shopService.getProductById(id)
-  //   .subscribe((response: IProduct) => console.log(response), error => console.log(error));
 
   getProductTypes = () => this.shopService.getProductTypes()
     .subscribe((response: IType[]) => this.types = [{ id: 0, name: 'All Types' }, ...response], error => console.log(error));
@@ -64,11 +62,6 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
-  // onAuthorSelected = (authorId: number) => {
-  //   this.authorSelected = authorId;
-  // this.shopParams.pageIndex = 1;
-  //   this.getProducts();
-  // }
 
   onSortSelected = (sort: string) => {
     this.shopParams.sort = sort;

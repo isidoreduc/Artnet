@@ -6,5 +6,4 @@ export class ShopParams {
     search?= '';
     pageIndex = 1;
     pageSize = 6;
-    // totalCount? = 0;
 }
